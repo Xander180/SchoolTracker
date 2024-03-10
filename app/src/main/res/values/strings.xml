@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">School Tracker</string>
+    <string name="terms">Terms</string>
+    <string name="term_details">Term Details</string>
+    <string name="courses">Courses</string>
+    <string name="assessments">Assessments</string>
+    <string name="mentors">Mentors</string>
+
+
+    // Content Descriptions
+    <string name="terms_icon">Terms Icon</string>
+    <string name="courses_icon">Courses Icon</string>
+    <string name="assessments_icon">Assessment Icon</string>
+    <string name="mentors_icon">Mentors Icon</string>
+    <string name="add">Add New</string>
+
+    <string name="add_sample_code">Add Sample Code</string>
+    <string name="delete_all_data">Delete All Data</string>
+</resources>
