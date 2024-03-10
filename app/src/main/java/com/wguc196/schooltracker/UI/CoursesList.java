@@ -10,22 +10,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
 
-public class TermsList extends AppCompatActivity {
+public class CoursesList extends AppCompatActivity {
+
+    FloatingActionButton addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        FloatingActionButton addButton;
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_terms_list);
+        setContentView(R.layout.activity_courses_list);
 
-        addButton = findViewById(R.id.termAddButton);
+        addButton = findViewById(R.id.courseAddButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TermsList.this, TermEditActivity.class);
+                Intent intent = new Intent(CoursesList.this, CourseEditActivity.class);
                 startActivity(intent);
             }
         });

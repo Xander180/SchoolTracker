@@ -10,15 +10,14 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.wguc196.schooltracker.R;
 
 public class MainActivity extends AppCompatActivity {
 
     Button termsButton;
+    Button coursesButton;
+    Button assessmentsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +26,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         termsButton = findViewById(R.id.termsButton);
+        coursesButton = findViewById(R.id.coursesButton);
+        assessmentsButton = findViewById(R.id.assessmentsButton);
         termsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TermsList.class);
+                startActivity(intent);
+            }
+        });
+
+        coursesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CoursesList.class);
+                startActivity(intent);
+            }
+        });
+
+        assessmentsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AssessmentsList.class);
                 startActivity(intent);
             }
         });

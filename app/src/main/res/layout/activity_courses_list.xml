@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.TermsList">
+    tools:context=".UI.CoursesList">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/termAddButton"
+        android:id="@+id/courseAddButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -18,4 +18,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/baseline_add_24"
         android:contentDescription="@string/add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
