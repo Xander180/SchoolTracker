@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.wguc196.schooltracker.Entities.Term;
+import com.wguc196.schooltracker.entities.Term;
 
 import java.util.List;
 

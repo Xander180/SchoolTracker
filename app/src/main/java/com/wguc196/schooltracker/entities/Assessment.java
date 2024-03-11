@@ -1,7 +1,7 @@
-package com.wguc196.schooltracker.Entities;
+package com.wguc196.schooltracker.entities;
 
-import androidx.room.Database;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
@@ -15,6 +15,11 @@ public class Assessment {
     private Date date;
     private AssessmentType assessmentType;
     private int courseID;
+
+    @Ignore
+    public Assessment() {
+
+    }
 
     public Assessment(int assessmentID, String title, Date date, AssessmentType assessmentType, int courseID) {
         this.assessmentID = assessmentID;

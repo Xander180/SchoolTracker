@@ -1,6 +1,7 @@
-package com.wguc196.schooltracker.Entities;
+package com.wguc196.schooltracker.entities;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
@@ -17,6 +18,12 @@ public class Course {
     private String note;
     private int termID;
 
+    @Ignore
+    public Course() {
+
+    }
+
+    @Ignore
     public Course(int courseID, String title, Date startDate, Date endDate, CourseStatus courseStatus, String note, int termID) {
         this.courseID = courseID;
         this.title = title;
@@ -26,6 +33,24 @@ public class Course {
         this.note = note;
         this.termID = termID;
     }
+
+    @Ignore
+    public Course(String title, Date startDate, Date endDate, CourseStatus courseStatus, int termID) {
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.courseStatus = courseStatus;
+        this.termID = termID;
+    }
+
+    public Course(String title, Date startDate, Date endDate, CourseStatus courseStatus) {
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.courseStatus = courseStatus;
+    }
+
+
 
     public int getCourseID() {
         return courseID;

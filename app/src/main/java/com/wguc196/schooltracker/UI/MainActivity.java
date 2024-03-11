@@ -11,8 +11,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.wguc196.schooltracker.Database.Repository;
+import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.R;
+import com.wguc196.schooltracker.helpers.SampleData;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -65,10 +66,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.sample_data) {
+            SampleData.getTerms();
+            SampleData.getCourses();
+            SampleData.getAssessments();
+            SampleData.getInstructors();
             Toast.makeText(MainActivity.this, "Sample data has been loaded", Toast.LENGTH_LONG).show();
             return true;
         } else if (menuItem.getItemId() == R.id.delete_data) {
-            Toast.makeText(MainActivity.this, "All data has been deleted", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "All data has been deleted (not really, yet)", Toast.LENGTH_LONG).show();
             return true;
         }
         return true;

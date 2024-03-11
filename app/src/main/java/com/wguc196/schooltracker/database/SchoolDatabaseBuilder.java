@@ -1,4 +1,4 @@
-package com.wguc196.schooltracker.Database;
+package com.wguc196.schooltracker.database;
 
 import android.content.Context;
 
@@ -8,16 +8,18 @@ import androidx.room.RoomDatabase;
 
 import com.wguc196.schooltracker.DAO.AssessmentDAO;
 import com.wguc196.schooltracker.DAO.CourseDAO;
+import com.wguc196.schooltracker.DAO.InstructorDAO;
 import com.wguc196.schooltracker.DAO.TermDAO;
-import com.wguc196.schooltracker.Entities.Assessment;
-import com.wguc196.schooltracker.Entities.Course;
-import com.wguc196.schooltracker.Entities.Term;
+import com.wguc196.schooltracker.entities.Assessment;
+import com.wguc196.schooltracker.entities.Course;
+import com.wguc196.schooltracker.entities.Term;
 
 @Database(entities = {Term.class, Course.class, Assessment.class}, version = 1, exportSchema = false)
 public abstract class SchoolDatabaseBuilder extends RoomDatabase {
     public  abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();
     public abstract AssessmentDAO assessmentDAO();
+    public abstract InstructorDAO instructorDAO();
     private static volatile SchoolDatabaseBuilder INSTANCE;
 
     static SchoolDatabaseBuilder getDatabase(final Context context) {

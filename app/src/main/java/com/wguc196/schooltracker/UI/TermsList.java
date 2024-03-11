@@ -8,7 +8,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.wguc196.schooltracker.Database.Repository;
 import com.wguc196.schooltracker.R;
 
 public class TermsList extends AppCompatActivity {

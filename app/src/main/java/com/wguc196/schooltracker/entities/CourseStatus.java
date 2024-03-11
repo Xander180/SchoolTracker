@@ -1,4 +1,4 @@
-package com.wguc196.schooltracker.Entities;
+package com.wguc196.schooltracker.entities;
 
 import androidx.annotation.NonNull;
 
