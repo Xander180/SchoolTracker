@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.wguc196.schooltracker.R;
 
+
 public class MainActivity extends AppCompatActivity {
 
     Button termsButton;

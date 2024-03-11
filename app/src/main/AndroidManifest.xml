@@ -13,43 +13,43 @@
         android:theme="@style/Theme.SchoolTracker"
         tools:targetApi="31">
         <activity
-            android:name=".UI.AssessmentDetailsActivity"
+            android:name="com.wguc196.schooltracker.UI.AssessmentDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.CourseDetailsActivity"
+            android:name="com.wguc196.schooltracker.UI.CourseDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.TermDetailsActivity"
+            android:name="com.wguc196.schooltracker.UI.TermDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.AssessmentEditActivity"
+            android:name="com.wguc196.schooltracker.UI.AssessmentEditActivity"
             android:exported="false"
-            android:parentActivityName=".UI.AssessmentsList"/>
+            android:parentActivityName="com.wguc196.schooltracker.UI.AssessmentsList"/>
         <activity
-            android:name=".UI.CourseEditActivity"
+            android:name="com.wguc196.schooltracker.UI.CourseEditActivity"
             android:exported="false"
-            android:parentActivityName=".UI.CoursesList"/>
+            android:parentActivityName="com.wguc196.schooltracker.UI.CoursesList"/>
         <activity
-            android:name=".UI.AssessmentsList"
+            android:name="com.wguc196.schooltracker.UI.AssessmentsList"
             android:exported="false"
             android:label="@string/assessments"
-            android:parentActivityName=".UI.TermsList" />
+            android:parentActivityName="com.wguc196.schooltracker.UI.TermsList" />
         <activity
-            android:name=".UI.CoursesList"
+            android:name="com.wguc196.schooltracker.UI.CoursesList"
             android:exported="false"
             android:label="@string/courses"
-            android:parentActivityName=".UI.TermsList" />
+            android:parentActivityName="com.wguc196.schooltracker.UI.TermsList" />
         <activity
-            android:name=".UI.TermEditActivity"
+            android:name="com.wguc196.schooltracker.UI.TermEditActivity"
             android:exported="false"
-            android:parentActivityName=".UI.TermsList" />
+            android:parentActivityName="com.wguc196.schooltracker.UI.TermsList" />
         <activity
-            android:name=".UI.TermsList"
+            android:name="com.wguc196.schooltracker.UI.TermsList"
             android:exported="false"
             android:label="@string/terms"
-            android:parentActivityName=".UI.MainActivity" />
+            android:parentActivityName="com.wguc196.schooltracker.UI.MainActivity" />
         <activity
-            android:name=".UI.MainActivity"
+            android:name="com.wguc196.schooltracker.UI.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

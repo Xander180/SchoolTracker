@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.wguc196.schooltracker.R;
 
+
 public class TermDetailsActivity extends AppCompatActivity {
 
     @Override
