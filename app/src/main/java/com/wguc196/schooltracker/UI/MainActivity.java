@@ -11,10 +11,12 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.wguc196.schooltracker.Database.Repository;
 import com.wguc196.schooltracker.R;
 
 
 public class MainActivity extends AppCompatActivity {
+    private Repository repository;
 
     Button termsButton;
     Button coursesButton;
