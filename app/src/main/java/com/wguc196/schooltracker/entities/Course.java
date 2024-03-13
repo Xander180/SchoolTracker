@@ -3,6 +3,9 @@ package com.wguc196.schooltracker.entities;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.wguc196.schooltracker.helpers.DateConverter;
 
 import java.util.Date;
 
@@ -12,8 +15,12 @@ public class Course {
     @PrimaryKey(autoGenerate = true)
     private int courseID;
     private String title;
+
+    @TypeConverters(DateConverter.class)
     private Date startDate;
+    @TypeConverters(DateConverter.class)
     private Date endDate;
+
     private CourseStatus courseStatus;
     private String note;
     private int termID;

@@ -12,9 +12,10 @@ import com.wguc196.schooltracker.DAO.InstructorDAO;
 import com.wguc196.schooltracker.DAO.TermDAO;
 import com.wguc196.schooltracker.entities.Assessment;
 import com.wguc196.schooltracker.entities.Course;
+import com.wguc196.schooltracker.entities.Instructor;
 import com.wguc196.schooltracker.entities.Term;
 
-@Database(entities = {Term.class, Course.class, Assessment.class}, version = 1, exportSchema = false)
+@Database(entities = {Term.class, Course.class, Assessment.class, Instructor.class}, version = 1, exportSchema = false)
 public abstract class SchoolDatabaseBuilder extends RoomDatabase {
     public  abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();

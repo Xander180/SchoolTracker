@@ -3,6 +3,9 @@ package com.wguc196.schooltracker.entities;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.wguc196.schooltracker.helpers.DateConverter;
 
 import java.util.Date;
 
@@ -12,6 +15,8 @@ public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessmentID;
     private String title;
+
+    @TypeConverters(DateConverter.class)
     private Date date;
     private AssessmentType assessmentType;
     private int courseID;

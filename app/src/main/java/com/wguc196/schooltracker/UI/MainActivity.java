@@ -13,11 +13,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.R;
+import com.wguc196.schooltracker.entities.Assessment;
+import com.wguc196.schooltracker.entities.Course;
+import com.wguc196.schooltracker.entities.Instructor;
+import com.wguc196.schooltracker.entities.Term;
 import com.wguc196.schooltracker.helpers.SampleData;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Repository repository;
+    private Repository repository = new Repository();
+    private final List<Term> sampleTerms = SampleData.getTerms();
 
     Button termsButton;
     Button coursesButton;
@@ -66,10 +73,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.sample_data) {
-            SampleData.getTerms();
-            SampleData.getCourses();
-            SampleData.getAssessments();
-            SampleData.getInstructors();
+            for (Term term : sampleTerms) {
+                repository.insert(term);
+            }
             Toast.makeText(MainActivity.this, "Sample data has been loaded", Toast.LENGTH_LONG).show();
             return true;
         } else if (menuItem.getItemId() == R.id.delete_data) {

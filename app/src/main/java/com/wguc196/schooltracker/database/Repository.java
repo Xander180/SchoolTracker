@@ -2,6 +2,8 @@ package com.wguc196.schooltracker.database;
 
 import android.app.Application;
 
+import androidx.room.Ignore;
+
 import com.wguc196.schooltracker.DAO.AssessmentDAO;
 import com.wguc196.schooltracker.DAO.CourseDAO;
 import com.wguc196.schooltracker.DAO.InstructorDAO;
@@ -28,6 +30,11 @@ public class Repository {
 
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
+    @Ignore
+    public Repository() {
+
+    }
 
     public Repository(Application application) {
         SchoolDatabaseBuilder db = SchoolDatabaseBuilder.getDatabase(application);

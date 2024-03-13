@@ -2,6 +2,9 @@ package com.wguc196.schooltracker.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.wguc196.schooltracker.helpers.DateConverter;
 
 import java.util.Date;
 
@@ -10,7 +13,10 @@ public class Term {
     @PrimaryKey(autoGenerate = true)
     private int termID;
     private String title;
+
+    @TypeConverters(DateConverter.class)
     private Date startDate;
+    @TypeConverters(DateConverter.class)
     private Date endDate;
 
     public Term(int termID, String title, Date startDate, Date endDate) {

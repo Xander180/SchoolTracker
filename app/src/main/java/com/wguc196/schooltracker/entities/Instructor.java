@@ -27,6 +27,7 @@ public class Instructor {
         this.courseID = courseID;
     }
 
+    @Ignore
     public Instructor(String name, String phone, String email, int courseID) {
         this.name = name;
         this.phone = phone;
