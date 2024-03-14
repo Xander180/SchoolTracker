@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.wguc196.schooltracker.DAO.AssessmentDAO;
 import com.wguc196.schooltracker.DAO.CourseDAO;
@@ -14,8 +15,10 @@ import com.wguc196.schooltracker.entities.Assessment;
 import com.wguc196.schooltracker.entities.Course;
 import com.wguc196.schooltracker.entities.Instructor;
 import com.wguc196.schooltracker.entities.Term;
+import com.wguc196.schooltracker.helpers.DateConverter;
 
 @Database(entities = {Term.class, Course.class, Assessment.class, Instructor.class}, version = 1, exportSchema = false)
+@TypeConverters(DateConverter.class)
 public abstract class SchoolDatabaseBuilder extends RoomDatabase {
     public  abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();

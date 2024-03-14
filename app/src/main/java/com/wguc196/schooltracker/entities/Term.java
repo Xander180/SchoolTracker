@@ -13,10 +13,7 @@ public class Term {
     @PrimaryKey(autoGenerate = true)
     private int termID;
     private String title;
-
-    @TypeConverters(DateConverter.class)
     private Date startDate;
-    @TypeConverters(DateConverter.class)
     private Date endDate;
 
     public Term(int termID, String title, Date startDate, Date endDate) {

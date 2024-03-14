@@ -15,10 +15,7 @@ public class Course {
     @PrimaryKey(autoGenerate = true)
     private int courseID;
     private String title;
-
-    @TypeConverters(DateConverter.class)
     private Date startDate;
-    @TypeConverters(DateConverter.class)
     private Date endDate;
 
     private CourseStatus courseStatus;

@@ -15,8 +15,6 @@ public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessmentID;
     private String title;
-
-    @TypeConverters(DateConverter.class)
     private Date date;
     private AssessmentType assessmentType;
     private int courseID;
