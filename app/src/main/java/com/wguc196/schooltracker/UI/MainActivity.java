@@ -23,8 +23,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Repository repository = new Repository();
-    private final List<Term> sampleTerms = SampleData.getTerms();
+    private Repository repository;
 
     Button termsButton;
     Button coursesButton;
@@ -73,9 +72,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.sample_data) {
-            for (Term term : sampleTerms) {
-                repository.insert(term);
-            }
+            repository = new Repository(getApplication());
+            SampleData.insertSampleData(repository);
             Toast.makeText(MainActivity.this, "Sample data has been loaded", Toast.LENGTH_LONG).show();
             return true;
         } else if (menuItem.getItemId() == R.id.delete_data) {

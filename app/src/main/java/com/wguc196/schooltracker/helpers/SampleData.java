@@ -1,5 +1,6 @@
 package com.wguc196.schooltracker.helpers;
 
+import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Assessment;
 import com.wguc196.schooltracker.entities.AssessmentType;
 import com.wguc196.schooltracker.entities.Course;
@@ -62,5 +63,20 @@ public class SampleData {
         sampleInstructors.add(new Instructor("Haythem Kenway", "haythem.kenway@wgu.edu", "345-678-9012", 10002));
 
         return  sampleInstructors;
+    }
+
+    public static void insertSampleData (Repository repository) {
+        for (Term term : getTerms()) {
+            repository.insert(term);
+        }
+        for (Course course : getCourses()) {
+            repository.insert(course);
+        }
+        for (Assessment assessment : getAssessments()) {
+            repository.insert(assessment);
+        }
+        for (Instructor instructor : getInstructors()) {
+            repository.insert(instructor);
+        }
     }
 }
