@@ -2,9 +2,6 @@ package com.wguc196.schooltracker.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.wguc196.schooltracker.helpers.DateConverter;
 
 import java.util.Date;
 

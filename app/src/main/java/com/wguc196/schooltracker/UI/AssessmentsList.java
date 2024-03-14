@@ -2,7 +2,6 @@ package com.wguc196.schooltracker.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,12 +20,9 @@ public class AssessmentsList extends AppCompatActivity {
         setContentView(R.layout.activity_assessments);
 
         addButton = findViewById(R.id.assessmentAddButton);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AssessmentsList.this, AssessmentEditActivity.class);
-                startActivity(intent);
-            }
+        addButton.setOnClickListener(v -> {
+            Intent intent = new Intent(AssessmentsList.this, AssessmentEditActivity.class);
+            startActivity(intent);
         });
     }
 }

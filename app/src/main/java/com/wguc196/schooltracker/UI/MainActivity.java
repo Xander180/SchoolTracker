@@ -11,19 +11,12 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.R;
-import com.wguc196.schooltracker.entities.Assessment;
-import com.wguc196.schooltracker.entities.Course;
-import com.wguc196.schooltracker.entities.Instructor;
-import com.wguc196.schooltracker.entities.Term;
+import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.helpers.SampleData;
-
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Repository repository;
 
     Button termsButton;
     Button coursesButton;
@@ -72,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.sample_data) {
-            repository = new Repository(getApplication());
+            Repository repository = new Repository(getApplication());
             SampleData.insertSampleData(repository);
             Toast.makeText(MainActivity.this, "Sample data has been loaded", Toast.LENGTH_LONG).show();
             return true;
