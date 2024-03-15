@@ -17,7 +17,7 @@ public class AssessmentsList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_assessments);
+        setContentView(R.layout.activity_assessments_list);
 
         addButton = findViewById(R.id.assessmentAddButton);
         addButton.setOnClickListener(v -> {

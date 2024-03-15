@@ -5,16 +5,26 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
+import com.wguc196.schooltracker.database.Repository;
+import com.wguc196.schooltracker.entities.Term;
+
+import java.util.List;
 
 public class TermsList extends AppCompatActivity {
+
+    List<Term> allTerms;
+    Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         FloatingActionButton addButton;
+        RecyclerView recyclerView;
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -25,5 +35,18 @@ public class TermsList extends AppCompatActivity {
             Intent intent = new Intent(TermsList.this, TermEditActivity.class);
             startActivity(intent);
         });
+
+        recyclerView = findViewById(R.id.terms_recycler_vew);
+        repository = new Repository(getApplication());
+        try {
+            allTerms = repository.getmAllTerms();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        final TermAdapter termAdapter = new TermAdapter(this);
+        recyclerView.setAdapter(termAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        termAdapter.setTerms(allTerms);
+
     }
 }
