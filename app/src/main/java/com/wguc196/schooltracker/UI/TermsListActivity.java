@@ -12,10 +12,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
 import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Term;
+import com.wguc196.schooltracker.helpers.TermAdapter;
 
 import java.util.List;
 
-public class TermsList extends AppCompatActivity {
+public class TermsListActivity extends AppCompatActivity {
 
     List<Term> allTerms;
     Repository repository;
@@ -32,7 +33,7 @@ public class TermsList extends AppCompatActivity {
 
         addButton = findViewById(R.id.termAddButton);
         addButton.setOnClickListener(v -> {
-            Intent intent = new Intent(TermsList.this, TermEditActivity.class);
+            Intent intent = new Intent(TermsListActivity.this, TermEditActivity.class);
             startActivity(intent);
         });
 

@@ -1,4 +1,4 @@
-package com.wguc196.schooltracker.UI;
+package com.wguc196.schooltracker.helpers;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wguc196.schooltracker.R;
+import com.wguc196.schooltracker.UI.TermDetailsActivity;
 import com.wguc196.schooltracker.entities.Term;
 
 import java.util.List;

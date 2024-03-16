@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.wguc196.schooltracker.R;
 
-public class InstructorsList extends AppCompatActivity {
+public class InstructorsListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

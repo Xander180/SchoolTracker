@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
 
-public class AssessmentsList extends AppCompatActivity {
+public class CoursesListActivity extends AppCompatActivity {
 
     FloatingActionButton addButton;
 
@@ -17,11 +17,11 @@ public class AssessmentsList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_assessments_list);
+        setContentView(R.layout.activity_courses_list);
 
-        addButton = findViewById(R.id.assessmentAddButton);
+        addButton = findViewById(R.id.courseAddButton);
         addButton.setOnClickListener(v -> {
-            Intent intent = new Intent(AssessmentsList.this, AssessmentEditActivity.class);
+            Intent intent = new Intent(CoursesListActivity.this, CourseEditActivity.class);
             startActivity(intent);
         });
     }

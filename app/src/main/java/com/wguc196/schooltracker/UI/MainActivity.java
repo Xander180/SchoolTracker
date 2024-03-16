@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button termsButton;
     Button coursesButton;
     Button assessmentsButton;
+    Button instructorsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         termsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TermsList.class);
+                Intent intent = new Intent(MainActivity.this, TermsListActivity.class);
                 startActivity(intent);
             }
         });
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         coursesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CoursesList.class);
+                Intent intent = new Intent(MainActivity.this, CoursesListActivity.class);
                 startActivity(intent);
             }
         });
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         assessmentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AssessmentsList.class);
+                Intent intent = new Intent(MainActivity.this, AssessmentsListActivity.class);
                 startActivity(intent);
             }
         });

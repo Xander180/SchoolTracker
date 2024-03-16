@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".UI.TermsList">
+    tools:context=".UI.TermsListActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/termAddButton"

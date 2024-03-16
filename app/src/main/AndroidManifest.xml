@@ -19,7 +19,7 @@
             android:name=".UI.InstructorEditActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.InstructorsList"
+            android:name=".UI.InstructorsListActivity"
             android:exported="false" />
         <activity
             android:name=".UI.AssessmentDetailsActivity"
@@ -33,27 +33,27 @@
         <activity
             android:name=".UI.AssessmentEditActivity"
             android:exported="false"
-            android:parentActivityName=".UI.AssessmentsList" />
+            android:parentActivityName=".UI.AssessmentsListActivity" />
         <activity
             android:name=".UI.CourseEditActivity"
             android:exported="false"
-            android:parentActivityName=".UI.CoursesList" />
+            android:parentActivityName=".UI.CoursesListActivity" />
         <activity
-            android:name=".UI.AssessmentsList"
+            android:name=".UI.AssessmentsListActivity"
             android:exported="false"
             android:label="@string/assessments"
-            android:parentActivityName=".UI.TermsList" />
+            android:parentActivityName=".UI.TermsListActivity" />
         <activity
-            android:name=".UI.CoursesList"
+            android:name=".UI.CoursesListActivity"
             android:exported="false"
             android:label="@string/courses"
-            android:parentActivityName=".UI.TermsList" />
+            android:parentActivityName=".UI.TermsListActivity" />
         <activity
             android:name=".UI.TermEditActivity"
             android:exported="false"
-            android:parentActivityName=".UI.TermsList" />
+            android:parentActivityName=".UI.TermsListActivity" />
         <activity
-            android:name=".UI.TermsList"
+            android:name=".UI.TermsListActivity"
             android:exported="false"
             android:label="@string/terms"
             android:parentActivityName=".UI.MainActivity" />

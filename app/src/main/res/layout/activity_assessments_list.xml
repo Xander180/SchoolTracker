@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context=".UI.AssessmentsList">
+    tools:context=".UI.AssessmentsListActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/assessmentAddButton"
@@ -21,7 +21,7 @@
         android:contentDescription="@string/add" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/terms_recycler_vew"
+        android:id="@+id/courses_recycler_vew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
