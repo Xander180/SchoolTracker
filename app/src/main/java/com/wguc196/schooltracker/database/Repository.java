@@ -18,10 +18,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Repository {
-    private TermDAO mTermDAO;
-    private CourseDAO mCourseDAO;
-    private AssessmentDAO mAssessmentDAO;
-    private InstructorDAO mInstructorDAO;
+    private final TermDAO mTermDAO;
+    private final CourseDAO mCourseDAO;
+    private final AssessmentDAO mAssessmentDAO;
+    private final InstructorDAO mInstructorDAO;
 
     private List<Term> mAllTerms;
     private List<Course> mAllCourses;
@@ -257,7 +257,7 @@ public class Repository {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -269,7 +269,7 @@ public class Repository {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -281,7 +281,7 @@ public class Repository {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
 

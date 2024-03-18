@@ -19,15 +19,16 @@ import java.util.List;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
     private List<Course> mCourses;
     private final Context context;
-    private final LayoutInflater mInflater;
+    private final LayoutInflater mInflator;
 
     public CourseAdapter(Context context) {
-        mInflater = LayoutInflater.from(context);
+        mInflator = LayoutInflater.from(context);
         this.context = context;
     }
 
     public class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseItemView;
+
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
             courseItemView = itemView.findViewById(R.id.item_button);
@@ -41,8 +42,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     intent.putExtra("title", current.getTitle());
                     intent.putExtra("startDate", current.getStartDate());
                     intent.putExtra("endDate", current.getEndDate());
-                    intent.putExtra("note", current.getNote());
-                    context.startActivity(intent);
+                    intent.putExtra("courseStatus", current.getCourseStatus());
+                    if (current.getNote() != null) {
+                        intent.putExtra("note", current.getNote());
+                    } else {
+                        intent.putExtra("note", "");
+                    }
                 }
             });
         }
@@ -51,12 +56,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @NonNull
     @Override
     public CourseAdapter.CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.list_item_primary, parent, false);
+        View itemView = mInflator.inflate(R.layout.list_item_primary, parent, false);
         return new CourseViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CourseAdapter.CourseViewHolder holder, int position) {
         if (mCourses != null) {
             Course current = mCourses.get(position);
             String name = current.getTitle();
@@ -71,7 +76,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         if (mCourses != null) {
             return mCourses.size();
         }
-
         return 0;
     }
 
@@ -79,5 +83,4 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         mCourses = courses;
         notifyDataSetChanged();
     }
-
 }

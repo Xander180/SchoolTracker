@@ -74,13 +74,13 @@
         android:contentDescription="@string/assessments_icon" />
 
     <Button
-        android:id="@+id/mentorsButton"
+        android:id="@+id/instructorsButton"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="24dp"
         android:textSize="30sp"
-        android:paddingStart="60dp"
-        android:text="@string/mentors"
+        android:paddingStart="90dp"
+        android:text="@string/instructors"
         app:layout_constraintTop_toBottomOf="@+id/assessmentsButton"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -90,7 +90,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/baseline_contacts_24"
-        app:layout_constraintStart_toStartOf="@+id/mentorsButton"
-        app:layout_constraintTop_toTopOf="@+id/mentorsButton"
+        app:layout_constraintStart_toStartOf="@+id/instructorsButton"
+        app:layout_constraintTop_toTopOf="@+id/instructorsButton"
         android:contentDescription="@string/mentors_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

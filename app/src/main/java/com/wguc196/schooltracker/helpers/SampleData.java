@@ -58,7 +58,7 @@ public class SampleData {
     public static List<Instructor> getInstructors() {
         List<Instructor> sampleInstructors = new ArrayList<>();
 
-        sampleInstructors.add(new Instructor("Wilson Ramirez", "wilson.ramirez@wgu.edu", "123-456-7890", 10000));
+        sampleInstructors.add(new Instructor("Arno Dorian", "arno.dorian@wgu.edu", "123-456-7890", 10000));
         sampleInstructors.add(new Instructor("James Kidd", "james.kidd@wgu.edu", "234-567-8901", 10001));
         sampleInstructors.add(new Instructor("Haythem Kenway", "haythem.kenway@wgu.edu", "345-678-9012", 10002));
 

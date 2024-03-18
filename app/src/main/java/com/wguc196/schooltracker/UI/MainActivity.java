@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         termsButton = findViewById(R.id.termsButton);
         coursesButton = findViewById(R.id.coursesButton);
         assessmentsButton = findViewById(R.id.assessmentsButton);
+        instructorsButton = findViewById(R.id.instructorsButton);
         termsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,11 +56,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        instructorsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, InstructorsListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_terms_list, menu);
+        getMenuInflater().inflate(R.menu.menu_list, menu);
         return true;
     }
 
