@@ -12,9 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
 import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Assessment;
-import com.wguc196.schooltracker.entities.Term;
 import com.wguc196.schooltracker.helpers.AssessmentAdapter;
-import com.wguc196.schooltracker.helpers.TermAdapter;
 
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class AssessmentsListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        recyclerView = findViewById(R.id.assessments_recycler_vew);
+        recyclerView = findViewById(R.id.assessmentsRecyclerView);
         repository = new Repository(getApplication());
         try {
             allAssessments = repository.getmAllAssessments();

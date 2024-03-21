@@ -37,7 +37,7 @@ public class InstructorsListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        recyclerView = findViewById(R.id.instructors_recycler_vew);
+        recyclerView = findViewById(R.id.instructorsRecyclerView);
         repository = new Repository(getApplication());
         try {
             allInstructors = repository.getmAllInstructors();

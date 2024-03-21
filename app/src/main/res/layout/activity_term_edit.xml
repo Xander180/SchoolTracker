@@ -9,7 +9,7 @@
     tools:context=".UI.TermEditActivity">
 
     <EditText
-        android:id="@+id/editTermTitleText"
+        android:id="@+id/termTitleEditText"
         android:layout_width="363dp"
         android:layout_height="48dp"
         android:layout_marginStart="12dp"
