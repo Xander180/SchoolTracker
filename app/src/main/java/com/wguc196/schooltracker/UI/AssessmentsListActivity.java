@@ -12,7 +12,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
 import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Assessment;
-import com.wguc196.schooltracker.helpers.AssessmentAdapter;
 
 import java.util.List;
 
