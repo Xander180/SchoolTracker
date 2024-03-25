@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,12 +29,12 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     }
 
     public class TermViewHolder extends RecyclerView.ViewHolder {
-        private final TextView termItemView;
+        private final Button termItemView;
 
         public TermViewHolder(@NonNull View itemView) {
             super(itemView);
-            termItemView = itemView.findViewById(R.id.item_button);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            termItemView = itemView.findViewById(R.id.itemButton);
+            termItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
@@ -41,8 +42,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                     Intent intent = new Intent(context, TermDetailsActivity.class);
                     intent.putExtra("termID", current.getTermID());
                     intent.putExtra("title", current.getTitle());
-                    intent.putExtra("startDate", current.getStartDate());
-                    intent.putExtra("endDate", current.getEndDate());
+                    intent.putExtra("startDate", TextFormatting.fullDateFormat.format(current.getStartDate()));
+                    intent.putExtra("endDate", TextFormatting.fullDateFormat.format(current.getEndDate()));
                     context.startActivity(intent);
                 }
             });

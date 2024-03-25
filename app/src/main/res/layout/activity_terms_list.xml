@@ -23,7 +23,7 @@
         app:srcCompat="@drawable/baseline_add_24" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/terms_recycler_vew"
+        android:id="@+id/termsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,13 +30,13 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
 
     public class AssessmentViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView assessmentItemView;
+        private final Button assessmentItemView;
 
         public AssessmentViewHolder(@NonNull View itemView) {
             super(itemView);
-            assessmentItemView = itemView.findViewById(R.id.item_button);
+            assessmentItemView = itemView.findViewById(R.id.itemButton);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            assessmentItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
@@ -43,7 +44,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                     Intent intent = new Intent(context, AssessmentDetailsActivity.class);
                     intent.putExtra("assessmentID", current.getAssessmentID());
                     intent.putExtra("title", current.getTitle());
-                    intent.putExtra("date", current.getDate());
+                    intent.putExtra("date", TextFormatting.fullDateFormat.format(current.getDate()));
                     intent.putExtra("assessmentType", current.getAssessmentType());
                     context.startActivity(intent);
                 }

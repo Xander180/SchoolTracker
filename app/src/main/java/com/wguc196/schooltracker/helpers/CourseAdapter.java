@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,12 +28,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     }
 
     public class CourseViewHolder extends RecyclerView.ViewHolder {
-        private final TextView courseItemView;
+        private final Button courseItemView;
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
-            courseItemView = itemView.findViewById(R.id.item_button);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            courseItemView = itemView.findViewById(R.id.itemButton);
+            courseItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
@@ -40,14 +41,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     Intent intent = new Intent(context, CourseDetailsActivity.class);
                     intent.putExtra("courseID", current.getCourseID());
                     intent.putExtra("title", current.getTitle());
-                    intent.putExtra("startDate", current.getStartDate());
-                    intent.putExtra("endDate", current.getEndDate());
+                    intent.putExtra("startDate", TextFormatting.fullDateFormat.format(current.getStartDate()));
+                    intent.putExtra("endDate", TextFormatting.fullDateFormat.format(current.getEndDate()));
                     intent.putExtra("courseStatus", current.getCourseStatus());
                     if (current.getNote() != null) {
                         intent.putExtra("note", current.getNote());
                     } else {
                         intent.putExtra("note", "");
                     }
+                    context.startActivity(intent);
                 }
             });
         }
@@ -83,4 +85,5 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         mCourses = courses;
         notifyDataSetChanged();
     }
+
 }

@@ -37,7 +37,7 @@ public class TermsListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        recyclerView = findViewById(R.id.terms_recycler_vew);
+        recyclerView = findViewById(R.id.termsRecyclerView);
         repository = new Repository(getApplication());
         try {
             allTerms = repository.getmAllTerms();

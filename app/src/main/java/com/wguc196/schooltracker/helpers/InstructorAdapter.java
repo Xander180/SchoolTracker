@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wguc196.schooltracker.R;
 import com.wguc196.schooltracker.UI.InstructorDetailsActivity;
-import com.wguc196.schooltracker.entities.Course;
 import com.wguc196.schooltracker.entities.Instructor;
 
 import java.util.List;
@@ -29,11 +29,11 @@ public class InstructorAdapter extends RecyclerView.Adapter<InstructorAdapter.In
     }
 
     public class InstructorViewHolder extends RecyclerView.ViewHolder {
-        private final TextView instructorItemView;
+        private final Button instructorItemView;
         public InstructorViewHolder(@NonNull View itemView) {
             super(itemView);
-            instructorItemView = itemView.findViewById(R.id.item_button);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            instructorItemView = itemView.findViewById(R.id.itemButton);
+            instructorItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();

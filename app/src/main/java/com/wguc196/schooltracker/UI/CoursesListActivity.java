@@ -13,7 +13,6 @@ import com.wguc196.schooltracker.R;
 import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Course;
 import com.wguc196.schooltracker.helpers.CourseAdapter;
-import com.wguc196.schooltracker.helpers.TermAdapter;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class CoursesListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        recyclerView = findViewById(R.id.courses_recycler_vew);
+        recyclerView = findViewById(R.id.coursesRecyclerView);
         repository = new Repository(getApplication());
         try {
             allCourses = repository.getmAllCourses();

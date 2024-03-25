@@ -5,7 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginHorizontal="10dp"
     tools:context=".UI.CourseDetailsActivity">
 
     <TextView
@@ -56,13 +58,26 @@
         android:id="@+id/editCourseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="336dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:clickable="true"
         android:contentDescription="Edit Button"
         app:backgroundTint="#673AB7"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_edit_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#fc665b"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_delete_24" />
 
     <TextView
         android:id="@+id/courseEndTextView"
@@ -70,6 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
         android:text="Sample Date"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,6 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="164dp"
         android:layout_marginTop="92dp"
+        android:layout_marginEnd="20dp"
         android:text="Sample Date"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -173,7 +190,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/assessmentsRecyclerView"
+        android:id="@+id/associatedAssessmentsRecyclerView"
         android:layout_width="385dp"
         android:layout_height="96dp"
         android:layout_marginStart="4dp"
@@ -182,7 +199,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/instructorsRecyclerView"
+        android:id="@+id/associatedInstructorsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="91dp"
         android:layout_marginStart="4dp"

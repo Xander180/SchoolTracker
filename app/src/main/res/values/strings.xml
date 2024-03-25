@@ -1,4 +1,5 @@
 <resources>
+    // Labels
     <string name="app_name">School Tracker</string>
     <string name="terms">Terms</string>
     <string name="term_details">Term Details</string>
@@ -14,6 +15,7 @@
     <string name="mentors_icon">Mentors Icon</string>
     <string name="add">Add New</string>
 
-    <string name="add_sample_code">Add Sample Code</string>
+    // Menu text
+    <string name="add_sample_data">Add Sample Data</string>
     <string name="delete_all_data">Delete All Data</string>
 </resources>

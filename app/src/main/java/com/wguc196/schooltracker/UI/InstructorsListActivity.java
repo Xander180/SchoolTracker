@@ -33,7 +33,7 @@ public class InstructorsListActivity extends AppCompatActivity {
 
         addButton = findViewById(R.id.instructorsAddButton);
         addButton.setOnClickListener(v -> {
-            Intent intent = new Intent(InstructorsListActivity.this, TermEditActivity.class);
+            Intent intent = new Intent(InstructorsListActivity.this, InstructorEditActivity.class);
             startActivity(intent);
         });
 
