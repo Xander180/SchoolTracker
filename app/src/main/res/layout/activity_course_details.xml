@@ -110,13 +110,12 @@
         android:id="@+id/courseNoteTextView"
         android:layout_width="114dp"
         android:layout_height="76dp"
-        android:layout_marginTop="244dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="240dp"
         android:text=""
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/noteText"
+        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -198,8 +197,8 @@
         android:id="@+id/shareNoteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="248dp"
         android:clickable="true"
         app:backgroundTint="#673AB7"
         app:layout_constraintStart_toStartOf="parent"

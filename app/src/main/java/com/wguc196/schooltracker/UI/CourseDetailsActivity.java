@@ -1,6 +1,8 @@
 package com.wguc196.schooltracker.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -42,6 +44,18 @@ public class CourseDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_course_details);
+
+        editCourse = findViewById(R.id.editCourseButton);
+        editCourse.setOnClickListener(v -> {
+            Intent intent = new Intent(CourseDetailsActivity.this, CourseEditActivity.class);
+            intent.putExtra("courseID", getIntent().getIntExtra("courseID", -1));
+            intent.putExtra("title", getIntent().getStringExtra("title"));
+            intent.putExtra("startDate", getIntent().getStringExtra("startDate"));
+            intent.putExtra("endDate", getIntent().getStringExtra("endDate"));
+            intent.putExtra("courseStatus", getIntent().getStringExtra("courseStatus"));
+            intent.putExtra("note", getIntent().getStringExtra("note"));
+            startActivity(intent);
+        });
 
         setTitle(getIntent().getStringExtra("title"));
         courseStartDate = findViewById(R.id.courseStartTextView);

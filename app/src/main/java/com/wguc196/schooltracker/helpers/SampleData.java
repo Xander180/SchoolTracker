@@ -38,9 +38,9 @@ public class SampleData {
     public static List<Course> getCourses() {
         List<Course> sampleCourses = new ArrayList<>();
 
-        sampleCourses.add(new Course(10000, SAMPLE_COURSE_TITLE + " 1", getDate(0), getDate(10), CourseStatus.IN_PROGRESS, "", 10000));
-        sampleCourses.add(new Course(10001, SAMPLE_COURSE_TITLE + " 2", getDate(-100), getDate(10), CourseStatus.IN_PROGRESS, "", 10001));
-        sampleCourses.add(new Course(10002, SAMPLE_COURSE_TITLE + " 3", getDate(-1000), getDate(10), CourseStatus.IN_PROGRESS, "", 10002));
+        sampleCourses.add(new Course(10000, SAMPLE_COURSE_TITLE + " 1", getDate(0), getDate(10), CourseStatus.IN_PROGRESS, "Sample Note", 10000));
+        sampleCourses.add(new Course(10001, SAMPLE_COURSE_TITLE + " 2", getDate(-100), getDate(10), CourseStatus.IN_PROGRESS, "Sample Note", 10001));
+        sampleCourses.add(new Course(10002, SAMPLE_COURSE_TITLE + " 3", getDate(-1000), getDate(10), CourseStatus.IN_PROGRESS, "Sample Note", 10002));
 
         return sampleCourses;
     }
