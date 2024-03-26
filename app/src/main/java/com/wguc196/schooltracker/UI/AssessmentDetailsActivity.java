@@ -1,27 +1,44 @@
 package com.wguc196.schooltracker.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
 
 
 public class AssessmentDetailsActivity extends AppCompatActivity {
+
+    TextView assessmentStart;
+    TextView assessmentType;
+    FloatingActionButton editAssessment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_assessment_details);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        editAssessment = findViewById(R.id.assessmentEditButton);
+        editAssessment.setOnClickListener(v -> {
+            Intent intent = new Intent(AssessmentDetailsActivity.this, AssessmentEditActivity.class);
+            intent.putExtra("assessmentID", getIntent().getIntExtra("assessmentID", -1));
+            intent.putExtra("title", getIntent().getStringExtra("title"));
+            intent.putExtra("date", getIntent().getStringExtra("date"));
+            intent.putExtra("assessmentType", getIntent().getStringExtra("assessmentType"));
+            startActivity(intent);
         });
+
+        setTitle(getIntent().getStringExtra("title"));
+        assessmentStart = findViewById(R.id.assessmentStartTextView);
+        assessmentType = findViewById(R.id.assessmentTypeTextView);
+
+        assessmentStart.setText(getIntent().getStringExtra("date"));
+        assessmentType.setText(getIntent().getStringExtra("assessmentType"));
+
     }
 }

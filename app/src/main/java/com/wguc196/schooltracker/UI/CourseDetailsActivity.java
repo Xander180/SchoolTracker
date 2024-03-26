@@ -29,6 +29,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
     TextView courseEndDate;
     TextView status;
     TextView note;
+    FloatingActionButton editCourse;
+    FloatingActionButton delete;
+    FloatingActionButton addAssessment;
     List<Assessment> associatedAssessments;
     List<Instructor> associatedInstructors;
     Repository repository;
@@ -37,9 +40,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         RecyclerView assessmentsRecyclerView;
         RecyclerView instructorsRecyclerView;
-        FloatingActionButton editCourse;
-        FloatingActionButton delete;
-        FloatingActionButton addAssessment;
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -62,6 +62,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         courseEndDate = findViewById(R.id.courseEndTextView);
         status = findViewById(R.id.courseStatusTextView);
         note = findViewById(R.id.courseNoteTextView);
+
         courseStartDate.setText(getIntent().getStringExtra("startDate"));
         courseEndDate.setText(getIntent().getStringExtra("endDate"));
         status.setText(getIntent().getStringExtra("courseStatus"));

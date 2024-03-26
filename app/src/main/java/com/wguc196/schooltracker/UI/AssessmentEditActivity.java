@@ -1,27 +1,35 @@
 package com.wguc196.schooltracker.UI;
 
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.wguc196.schooltracker.R;
 
 
 public class AssessmentEditActivity extends AppCompatActivity {
 
+    EditText assessmentTitle;
+    EditText startDate;
+    Spinner assessmentType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_assessment_edit);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        assessmentTitle = findViewById(R.id.assessmentTitleEditText);
+        startDate = findViewById(R.id.assessmentStartEditText);
+        assessmentType = findViewById(R.id.assessmentTypeSpinner);
+
+        setTitle(getIntent().getStringExtra("title"));
+        assessmentTitle.setText(getIntent().getStringExtra("title"));
+        startDate.setText(getIntent().getStringExtra("date"));
+        // assessmentType
+
     }
 }

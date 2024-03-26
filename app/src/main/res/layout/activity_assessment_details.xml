@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/courseStartTextView"
+        android:id="@+id/assessmentStartTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="164dp"
@@ -49,19 +49,18 @@
         android:id="@+id/assessmentTypeTextView"
         android:layout_width="180dp"
         android:layout_height="90dp"
-        android:layout_marginStart="164dp"
         android:layout_marginTop="160dp"
         android:lines="2"
         android:text="Objective Assessment"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/assessmentDateTextView"
+        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/editAssessmentButton"
+        android:id="@+id/assessmentEditButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
