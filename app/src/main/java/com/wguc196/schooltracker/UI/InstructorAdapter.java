@@ -31,18 +31,15 @@ public class InstructorAdapter extends RecyclerView.Adapter<InstructorAdapter.In
         public InstructorViewHolder(@NonNull View itemView) {
             super(itemView);
             instructorItemView = itemView.findViewById(R.id.itemButton);
-            instructorItemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    final Instructor current = mInstructors.get(position);
-                    Intent intent = new Intent(context, InstructorDetailsActivity.class);
-                    intent.putExtra("instructorID", current.getInstructorID());
-                    intent.putExtra("title", current.getName());
-                    intent.putExtra("phone", current.getPhone());
-                    intent.putExtra("email", current.getEmail());
-                    context.startActivity(intent);
-                }
+            instructorItemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                final Instructor current = mInstructors.get(position);
+                Intent intent = new Intent(context, InstructorDetailsActivity.class);
+                intent.putExtra("instructorID", current.getInstructorID());
+                intent.putExtra("name", current.getName());
+                intent.putExtra("phone", current.getPhone());
+                intent.putExtra("email", current.getEmail());
+                context.startActivity(intent);
             });
         }
     }

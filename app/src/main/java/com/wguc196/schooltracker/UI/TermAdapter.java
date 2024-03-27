@@ -33,18 +33,15 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         public TermViewHolder(@NonNull View itemView) {
             super(itemView);
             termItemView = itemView.findViewById(R.id.itemButton);
-            termItemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    final Term current = mTerms.get(position);
-                    Intent intent = new Intent(context, TermDetailsActivity.class);
-                    intent.putExtra("termID", current.getTermID());
-                    intent.putExtra("title", current.getTitle());
-                    intent.putExtra("startDate", TextFormatting.fullDateFormat.format(current.getStartDate()));
-                    intent.putExtra("endDate", TextFormatting.fullDateFormat.format(current.getEndDate()));
-                    context.startActivity(intent);
-                }
+            termItemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                final Term current = mTerms.get(position);
+                Intent intent = new Intent(context, TermDetailsActivity.class);
+                intent.putExtra("termID", current.getTermID());
+                intent.putExtra("title", current.getTitle());
+                intent.putExtra("startDate", TextFormatting.fullDateFormat.format(current.getStartDate()));
+                intent.putExtra("endDate", TextFormatting.fullDateFormat.format(current.getEndDate()));
+                context.startActivity(intent);
             });
         }
     }

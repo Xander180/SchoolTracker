@@ -17,7 +17,7 @@ import com.wguc196.schooltracker.entities.Instructor;
 import com.wguc196.schooltracker.entities.Term;
 import com.wguc196.schooltracker.helpers.DateConverter;
 
-@Database(entities = {Term.class, Course.class, Assessment.class, Instructor.class}, version = 4, exportSchema = false)
+@Database(entities = {Term.class, Course.class, Assessment.class, Instructor.class}, version = 5, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class SchoolDatabaseBuilder extends RoomDatabase {
     public abstract TermDAO termDAO();

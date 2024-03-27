@@ -25,12 +25,12 @@
         android:id="@+id/instructorEmailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sample Date"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="104dp"
+        android:text="exampleemail@email.com"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/emailTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/phoneTextView"
@@ -47,13 +47,15 @@
         android:id="@+id/instructorPhoneTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sample Date"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="188dp"
+        android:text="000-000-0000"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/phoneTextView"
-        app:layout_constraintStart_toStartOf="@+id/instructorEmailTextView" />
+        app:layout_constraintStart_toEndOf="@+id/phoneTextView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/editTermButton"
+        android:id="@+id/instructorEditButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

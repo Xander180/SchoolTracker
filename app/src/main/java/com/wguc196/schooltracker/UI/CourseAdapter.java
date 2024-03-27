@@ -32,24 +32,21 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
             courseItemView = itemView.findViewById(R.id.itemButton);
-            courseItemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    final Course current = mCourses.get(position);
-                    Intent intent = new Intent(context, CourseDetailsActivity.class);
-                    intent.putExtra("courseID", current.getCourseID());
-                    intent.putExtra("title", current.getTitle());
-                    intent.putExtra("startDate", TextFormatting.fullDateFormat.format(current.getStartDate()));
-                    intent.putExtra("endDate", TextFormatting.fullDateFormat.format(current.getEndDate()));
-                    intent.putExtra("courseStatus", current.getCourseStatus().toString());
-                    if (current.getNote() != null) {
-                        intent.putExtra("note", current.getNote());
-                    } else {
-                        intent.putExtra("note", "");
-                    }
-                    context.startActivity(intent);
+            courseItemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                final Course current = mCourses.get(position);
+                Intent intent = new Intent(context, CourseDetailsActivity.class);
+                intent.putExtra("courseID", current.getCourseID());
+                intent.putExtra("title", current.getTitle());
+                intent.putExtra("startDate", TextFormatting.fullDateFormat.format(current.getStartDate()));
+                intent.putExtra("endDate", TextFormatting.fullDateFormat.format(current.getEndDate()));
+                intent.putExtra("courseStatus", current.getCourseStatus().toString());
+                if (current.getNote() != null) {
+                    intent.putExtra("note", current.getNote());
+                } else {
+                    intent.putExtra("note", "");
                 }
+                context.startActivity(intent);
             });
         }
     }

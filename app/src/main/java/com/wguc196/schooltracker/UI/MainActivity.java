@@ -33,36 +33,24 @@ public class MainActivity extends AppCompatActivity {
         coursesButton = findViewById(R.id.coursesButton);
         assessmentsButton = findViewById(R.id.assessmentsButton);
         instructorsButton = findViewById(R.id.instructorsButton);
-        termsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TermsListActivity.class);
-                startActivity(intent);
-            }
+        termsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, TermsListActivity.class);
+            startActivity(intent);
         });
 
-        coursesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CoursesListActivity.class);
-                startActivity(intent);
-            }
+        coursesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CoursesListActivity.class);
+            startActivity(intent);
         });
 
-        assessmentsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AssessmentsListActivity.class);
-                startActivity(intent);
-            }
+        assessmentsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AssessmentsListActivity.class);
+            startActivity(intent);
         });
 
-        instructorsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, InstructorsListActivity.class);
-                startActivity(intent);
-            }
+        instructorsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, InstructorsListActivity.class);
+            startActivity(intent);
         });
     }
 
