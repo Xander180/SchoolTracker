@@ -1,6 +1,8 @@
 package com.wguc196.schooltracker.UI;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -31,5 +33,22 @@ public class AssessmentEditActivity extends AppCompatActivity {
         startDate.setText(getIntent().getStringExtra("date"));
         // assessmentType
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_save, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        int id = menuItem.getItemId();
+
+        if (id == R.id.save_data) {
+            // Save data
+            return true;
+        }
+        return super.onOptionsItemSelected(menuItem);
     }
 }

@@ -44,11 +44,14 @@ public class Course {
         this.termID = termID;
     }
 
-    public Course(String title, Date startDate, Date endDate, CourseStatus courseStatus) {
+    public Course(int courseID, String title, Date startDate, Date endDate, CourseStatus courseStatus, String note) {
+        this.courseID = courseID;
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
         this.courseStatus = courseStatus;
+        this.note = note;
+
     }
 
 

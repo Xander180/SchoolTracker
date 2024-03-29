@@ -28,6 +28,8 @@ public class Repository {
     private List<Assessment> mAllAssessments;
     private List<Instructor> mAllInstructors;
 
+    private Course course;
+
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
@@ -103,6 +105,20 @@ public class Repository {
         }
 
         return  mAllCourses;
+    }
+
+    public Course getCourse(int courseID) throws InterruptedException {
+        databaseExecutor.execute(() -> {
+            course = mCourseDAO.getCourse(courseID);
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return course;
     }
 
     public List<Course> getmAssociatedCourses(int termID) throws InterruptedException {

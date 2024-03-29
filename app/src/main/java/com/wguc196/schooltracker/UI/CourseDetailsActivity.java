@@ -2,14 +2,10 @@ package com.wguc196.schooltracker.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,12 +31,12 @@ public class CourseDetailsActivity extends AppCompatActivity {
     List<Assessment> associatedAssessments;
     List<Instructor> associatedInstructors;
     Repository repository;
+    Course course;
+    RecyclerView assessmentsRecyclerView;
+    RecyclerView instructorsRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        RecyclerView assessmentsRecyclerView;
-        RecyclerView instructorsRecyclerView;
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_course_details);
@@ -57,21 +53,28 @@ public class CourseDetailsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        setTitle(getIntent().getStringExtra("title"));
         courseStartDate = findViewById(R.id.courseStartTextView);
         courseEndDate = findViewById(R.id.courseEndTextView);
         status = findViewById(R.id.courseStatusTextView);
         note = findViewById(R.id.courseNoteTextView);
 
-        courseStartDate.setText(getIntent().getStringExtra("startDate"));
-        courseEndDate.setText(getIntent().getStringExtra("endDate"));
-        status.setText(getIntent().getStringExtra("courseStatus"));
-        note.setText(getIntent().getStringExtra("note"));
-
         assessmentsRecyclerView = findViewById(R.id.associatedAssessmentsRecyclerView);
         instructorsRecyclerView = findViewById(R.id.associatedInstructorsRecyclerView);
+    }
+
+    private void loadCourseData() {
+        setTitle(getIntent().getStringExtra("title"));
+
+        courseStartDate.setText(getIntent().getStringExtra("startDate"));
+        courseEndDate.setText(getIntent().getStringExtra("endDate"));
+        status.setText(course.getCourseStatus().toString());
+        note.setText(getIntent().getStringExtra("note"));
+    }
+
+    private void loadRepositoryData() {
         repository = new Repository(getApplication());
         try {
+            course = repository.getCourse(getIntent().getIntExtra("courseID", -1));
             associatedAssessments = repository.getmAssociatedAssessments(getIntent().getIntExtra("courseID", 1));
             associatedInstructors = repository.getmAssociatedInstructors(getIntent().getIntExtra("courseID", 1));
         } catch (InterruptedException e) {
@@ -88,7 +91,12 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         assessmentAdapter.setAssessments(associatedAssessments);
         instructorAdapter.setInstructors(associatedInstructors);
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadRepositoryData();
+        loadCourseData();
     }
 }

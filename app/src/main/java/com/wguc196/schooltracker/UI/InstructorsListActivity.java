@@ -12,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
 import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Instructor;
+import com.wguc196.schooltracker.entities.Term;
 
 import java.util.List;
 
@@ -24,7 +25,6 @@ public class InstructorsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         FloatingActionButton addButton;
-        RecyclerView recyclerView;
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -35,17 +35,25 @@ public class InstructorsListActivity extends AppCompatActivity {
             Intent intent = new Intent(InstructorsListActivity.this, InstructorEditActivity.class);
             startActivity(intent);
         });
+    }
 
-        recyclerView = findViewById(R.id.instructorsRecyclerView);
-        repository = new Repository(getApplication());
+    private void loadData() {
         try {
+            repository = new Repository(getApplication());
             allInstructors = repository.getmAllInstructors();
+            RecyclerView recyclerView = findViewById(R.id.instructorsRecyclerView);
+            final InstructorAdapter instructorAdapter = new InstructorAdapter(this);
+            recyclerView.setAdapter(instructorAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            instructorAdapter.setInstructors(allInstructors);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        final InstructorAdapter instructorAdapter = new InstructorAdapter(this);
-        recyclerView.setAdapter(instructorAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        instructorAdapter.setInstructors(allInstructors);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
     }
 }

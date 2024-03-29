@@ -40,7 +40,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 intent.putExtra("title", current.getTitle());
                 intent.putExtra("startDate", TextFormatting.fullDateFormat.format(current.getStartDate()));
                 intent.putExtra("endDate", TextFormatting.fullDateFormat.format(current.getEndDate()));
-                intent.putExtra("courseStatus", current.getCourseStatus().toString());
+                intent.putExtra("courseStatus", current.getCourseStatus());
                 if (current.getNote() != null) {
                     intent.putExtra("note", current.getNote());
                 } else {

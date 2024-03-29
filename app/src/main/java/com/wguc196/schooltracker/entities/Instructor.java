@@ -35,7 +35,8 @@ public class Instructor {
         this.courseID = courseID;
     }
 
-    public Instructor(String name, String phone, String email) {
+    public Instructor(int instructorID, String name, String phone, String email) {
+        this.instructorID = instructorID;
         this.name = name;
         this.phone = phone;
         this.email = email;

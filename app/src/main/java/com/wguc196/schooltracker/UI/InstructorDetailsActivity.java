@@ -38,10 +38,14 @@ public class InstructorDetailsActivity extends AppCompatActivity {
 
         instructorEmail = findViewById(R.id.instructorEmailTextView);
         instructorPhone = findViewById(R.id.instructorPhoneTextView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         setTitle(getIntent().getStringExtra("name"));
         instructorEmail.setText(getIntent().getStringExtra("email"));
         instructorPhone.setText(getIntent().getStringExtra("phone"));
-
     }
 }

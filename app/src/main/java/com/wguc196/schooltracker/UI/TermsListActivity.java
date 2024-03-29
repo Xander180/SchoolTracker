@@ -18,14 +18,12 @@ import java.util.List;
 public class TermsListActivity extends AppCompatActivity {
 
     List<Term> allTerms;
+    FloatingActionButton addButton;
+    RecyclerView recyclerView;
     Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        FloatingActionButton addButton;
-        RecyclerView recyclerView;
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_terms_list);
@@ -38,15 +36,20 @@ public class TermsListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.termsRecyclerView);
         repository = new Repository(getApplication());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         try {
-            allTerms = repository.getmAllTerms();
+            List<Term> allTerms = repository.getmAllTerms();
+            RecyclerView recyclerView = findViewById(R.id.termsRecyclerView);
+            final TermAdapter termAdapter = new TermAdapter(this);
+            recyclerView.setAdapter(termAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            termAdapter.setTerms(allTerms);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        final TermAdapter termAdapter = new TermAdapter(this);
-        recyclerView.setAdapter(termAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        termAdapter.setTerms(allTerms);
-
     }
 }

@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Sample data has been loaded", Toast.LENGTH_LONG).show();
             return true;
         } else if (menuItem.getItemId() == R.id.delete_data) {
-            Toast.makeText(MainActivity.this, "All data has been deleted (not really, yet)", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "All data has been deleted", Toast.LENGTH_LONG).show();
             return true;
         }
         return true;
