@@ -31,11 +31,18 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
             intent.putExtra("date", getIntent().getStringExtra("date"));
             intent.putExtra("assessmentType", getIntent().getStringExtra("assessmentType"));
             startActivity(intent);
+            this.finish();
         });
 
-        setTitle(getIntent().getStringExtra("title"));
         assessmentStart = findViewById(R.id.assessmentStartTextView);
         assessmentType = findViewById(R.id.assessmentTypeTextView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        setTitle(getIntent().getStringExtra("title"));
 
         assessmentStart.setText(getIntent().getStringExtra("date"));
         assessmentType.setText(getIntent().getStringExtra("assessmentType"));

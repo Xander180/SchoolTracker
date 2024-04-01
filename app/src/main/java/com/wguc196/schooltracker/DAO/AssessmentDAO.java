@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.wguc196.schooltracker.entities.Assessment;
+import com.wguc196.schooltracker.entities.Course;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ public interface AssessmentDAO {
 
     @Query("SELECT * FROM assessments ORDER BY assessmentID ASC")
     List<Assessment> getAllAssessments();
+
+    @Query("SELECT * FROM assessments WHERE assessmentID = :assessmentID")
+    Assessment getAssessment(int assessmentID);
 
     @Query("SELECT * FROM assessments WHERE courseID = :courseID  ORDER BY assessmentID ASC")
     List<Assessment> getAssociatedAssessments(int courseID);

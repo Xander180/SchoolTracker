@@ -34,7 +34,6 @@ public class CourseEditActivity extends AppCompatActivity {
     Spinner courseStatus;
     EditText note;
     Repository repository;
-    private Course course;
 
 
     @Override
@@ -53,6 +52,7 @@ public class CourseEditActivity extends AppCompatActivity {
         note = findViewById(R.id.courseNoteEditText);
 
         setSpinnerItems();
+        Course course;
         try {
             course = repository.getCourse(courseID);
         } catch (InterruptedException e) {
@@ -62,7 +62,6 @@ public class CourseEditActivity extends AppCompatActivity {
         courseTitle.setText(getIntent().getStringExtra("title"));
         courseStartDate.setText(getIntent().getStringExtra("startDate"));
         courseEndDate.setText(getIntent().getStringExtra("endDate"));
-        // courseStatus
         int position = getSpinnerPosition(course.getCourseStatus());
         courseStatus.setSelection(position);
         note.setText(getIntent().getStringExtra("note"));

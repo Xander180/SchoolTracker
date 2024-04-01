@@ -17,8 +17,11 @@ public class Assessment {
     private int courseID;
 
     @Ignore
-    public Assessment() {
-
+    public Assessment(int assessmentID, String title, Date date, AssessmentType assessmentType) {
+        this.assessmentID = assessmentID;
+        this.title = title;
+        this.date = date;
+        this.assessmentType = assessmentType;
     }
 
     public Assessment(int assessmentID, String title, Date date, AssessmentType assessmentType, int courseID) {
