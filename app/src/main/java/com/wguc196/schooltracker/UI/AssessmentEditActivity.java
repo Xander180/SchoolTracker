@@ -1,10 +1,12 @@
 package com.wguc196.schooltracker.UI;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,11 +17,11 @@ import com.wguc196.schooltracker.R;
 import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Assessment;
 import com.wguc196.schooltracker.entities.AssessmentType;
-import com.wguc196.schooltracker.entities.Course;
-import com.wguc196.schooltracker.entities.CourseStatus;
 import com.wguc196.schooltracker.helpers.TextFormatting;
 
 import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Objects;
 
 
 public class AssessmentEditActivity extends AppCompatActivity {
@@ -27,7 +29,8 @@ public class AssessmentEditActivity extends AppCompatActivity {
     private int assessmentID;
     EditText assessmentTitle;
     ArrayAdapter<AssessmentType> assessmentTypeArrayAdapter;
-    EditText startDate;
+    EditText assessmentDueDate;
+    ImageButton assessmentStartButton;
     Spinner assessmentType;
     Repository repository;
 
@@ -38,9 +41,29 @@ public class AssessmentEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assessment_edit);
         repository = new Repository(getApplication());
 
+        assessmentStartButton = findViewById(R.id.assessmentStartEditButton);
+        assessmentStartButton.setOnClickListener(v -> {
+            Calendar calendarStart = Calendar.getInstance();
+            if (!assessmentDueDate.getText().toString().isEmpty()) {
+                try {
+                    calendarStart.setTime(Objects.requireNonNull(TextFormatting.fullDateFormat.parse(assessmentDueDate.getText().toString())));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            DatePickerDialog.OnDateSetListener startDatePicker = (view, year, month, dayOfMonth) -> {
+                calendarStart.set(Calendar.YEAR, year);
+                calendarStart.set(Calendar.MONTH, month);
+                calendarStart.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                assessmentDueDate.setText(TextFormatting.fullDateFormat.format(calendarStart.getTime()));
+            };
+            new DatePickerDialog(AssessmentEditActivity.this, startDatePicker, calendarStart.get(Calendar.YEAR), calendarStart.get(Calendar.MONTH), calendarStart.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
         assessmentID = getIntent().getIntExtra("assessmentID", -1);
         assessmentTitle = findViewById(R.id.assessmentTitleEditText);
-        startDate = findViewById(R.id.assessmentStartEditText);
+        assessmentDueDate = findViewById(R.id.assessmentStartEditText);
         assessmentType = findViewById(R.id.assessmentTypeSpinner);
 
         setSpinnerItems();
@@ -49,7 +72,7 @@ public class AssessmentEditActivity extends AppCompatActivity {
 
         setTitle(getIntent().getStringExtra("title"));
         assessmentTitle.setText(getIntent().getStringExtra("title"));
-        startDate.setText(getIntent().getStringExtra("date"));
+        assessmentDueDate.setText(getIntent().getStringExtra("date"));
         int position = getSpinnerPosition(assessment.getAssessmentType());
         assessmentType.setSelection(position);
 
@@ -86,11 +109,11 @@ public class AssessmentEditActivity extends AppCompatActivity {
                 if (assessmentID == -1) {
                     if (repository.getmAllAssessments().isEmpty()) assessmentID = 1;
                     else assessmentID = repository.getmAllAssessments().get(repository.getmAllAssessments().size() - 1).getAssessmentID() + 1;
-                    assessment = new Assessment(assessmentID, assessmentTitle.getText().toString(), TextFormatting.fullDateFormat.parse(startDate.getText().toString()),
+                    assessment = new Assessment(assessmentID, assessmentTitle.getText().toString(), TextFormatting.fullDateFormat.parse(assessmentDueDate.getText().toString()),
                             getSpinnerValue());
                     repository.insert(assessment);
                 } else {
-                    assessment = new Assessment(assessmentID, assessmentTitle.getText().toString(), TextFormatting.fullDateFormat.parse(startDate.getText().toString()),
+                    assessment = new Assessment(assessmentID, assessmentTitle.getText().toString(), TextFormatting.fullDateFormat.parse(assessmentDueDate.getText().toString()),
                             getSpinnerValue());
                     repository.update(assessment);
                 }

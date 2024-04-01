@@ -1,10 +1,13 @@
 package com.wguc196.schooltracker.UI;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +25,8 @@ import com.wguc196.schooltracker.entities.Term;
 import com.wguc196.schooltracker.helpers.TextFormatting;
 
 import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Objects;
 
 
 public class CourseEditActivity extends AppCompatActivity {
@@ -31,6 +36,8 @@ public class CourseEditActivity extends AppCompatActivity {
     EditText courseTitle;
     EditText courseStartDate;
     EditText courseEndDate;
+    ImageButton courseStartButton;
+    ImageButton courseEndButton;
     Spinner courseStatus;
     EditText note;
     Repository repository;
@@ -42,6 +49,39 @@ public class CourseEditActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_course_edit);
         repository = new Repository(getApplication());
+
+        courseStartButton = findViewById(R.id.courseStartEditButton);
+        courseStartButton.setOnClickListener(v -> {
+            Calendar calendarStart = Calendar.getInstance();
+            DatePickerDialog.OnDateSetListener startDatePicker = (view, year, month, dayOfMonth) -> {
+                calendarStart.set(Calendar.YEAR, year);
+                calendarStart.set(Calendar.MONTH, month);
+                calendarStart.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                courseStartDate.setText(TextFormatting.fullDateFormat.format(calendarStart.getTime()));
+            };
+            new DatePickerDialog(CourseEditActivity.this, startDatePicker, calendarStart.get(Calendar.YEAR), calendarStart.get(Calendar.MONTH), calendarStart.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        courseEndButton = findViewById(R.id.courseEndEditButton);
+        courseEndButton.setOnClickListener(v -> {
+            Calendar calendarEnd = Calendar.getInstance();
+            if (!courseEndDate.getText().toString().isEmpty()) {
+                try {
+                    calendarEnd.setTime(Objects.requireNonNull(TextFormatting.fullDateFormat.parse(courseEndDate.getText().toString())));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            DatePickerDialog.OnDateSetListener startDatePicker = (view, year, month, dayOfMonth) -> {
+                calendarEnd.set(Calendar.YEAR, year);
+                calendarEnd.set(Calendar.MONTH, month);
+                calendarEnd.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                courseEndDate.setText(TextFormatting.fullDateFormat.format(calendarEnd.getTime()));
+            };
+            new DatePickerDialog(CourseEditActivity.this, startDatePicker, calendarEnd.get(Calendar.YEAR), calendarEnd.get(Calendar.MONTH), calendarEnd.get(Calendar.DAY_OF_MONTH)).show();
+        });
 
         setTitle(getIntent().getStringExtra("title"));
         courseID = getIntent().getIntExtra("courseID", -1);

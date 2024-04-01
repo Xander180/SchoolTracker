@@ -2,6 +2,7 @@ package com.wguc196.schooltracker.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +29,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
     FloatingActionButton editCourse;
     FloatingActionButton delete;
     FloatingActionButton addAssessment;
+    FloatingActionButton shareNote;
     List<Assessment> associatedAssessments;
     List<Instructor> associatedInstructors;
     Repository repository;
@@ -51,6 +53,16 @@ public class CourseDetailsActivity extends AppCompatActivity {
             intent.putExtra("courseStatus", getIntent().getStringExtra("courseStatus"));
             intent.putExtra("note", getIntent().getStringExtra("note"));
             startActivity(intent);
+        });
+
+        shareNote = findViewById(R.id.shareNoteButton);
+        shareNote.setOnClickListener(v -> {
+            Intent sentIntent = new Intent();
+            sentIntent.setAction(Intent.ACTION_SEND);
+            sentIntent.putExtra(Intent.EXTRA_TEXT, note.getText().toString());
+            sentIntent.setType("text/plain");
+            Intent shareIntent = Intent.createChooser(sentIntent, null);
+            startActivity(shareIntent);
         });
 
         courseStartDate = findViewById(R.id.courseStartTextView);

@@ -27,7 +27,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="164dp"
         android:ems="10"
-        android:hint="Start Date"
+        android:hint="Due Date - MM/DD/YY"
         android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
