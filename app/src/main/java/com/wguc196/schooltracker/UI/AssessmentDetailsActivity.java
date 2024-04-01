@@ -46,6 +46,5 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
 
         assessmentStart.setText(getIntent().getStringExtra("date"));
         assessmentType.setText(getIntent().getStringExtra("assessmentType"));
-
     }
 }

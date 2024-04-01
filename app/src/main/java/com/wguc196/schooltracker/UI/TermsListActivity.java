@@ -17,7 +17,6 @@ import java.util.List;
 
 public class TermsListActivity extends AppCompatActivity {
 
-    List<Term> allTerms;
     FloatingActionButton addButton;
     RecyclerView recyclerView;
     Repository repository;
