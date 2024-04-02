@@ -52,6 +52,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
             intent.putExtra("endDate", getIntent().getStringExtra("endDate"));
             intent.putExtra("courseStatus", getIntent().getStringExtra("courseStatus"));
             intent.putExtra("note", getIntent().getStringExtra("note"));
+            intent.putExtra("termID", getIntent().getIntExtra("termID", -1));
             startActivity(intent);
         });
 

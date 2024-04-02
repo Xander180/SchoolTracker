@@ -30,6 +30,7 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
             intent.putExtra("title", getIntent().getStringExtra("title"));
             intent.putExtra("date", getIntent().getStringExtra("date"));
             intent.putExtra("assessmentType", getIntent().getStringExtra("assessmentType"));
+            intent.putExtra("courseID", getIntent().getIntExtra("courseID", -1));
             startActivity(intent);
             this.finish();
         });

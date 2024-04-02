@@ -23,6 +23,7 @@ import java.text.ParseException;
 public class InstructorEditActivity extends AppCompatActivity {
 
     private int instructorID;
+    private int courseID;
     EditText instructorName;
     EditText instructorEmail;
     EditText instructorPhone;
@@ -37,6 +38,7 @@ public class InstructorEditActivity extends AppCompatActivity {
         instructorName = findViewById(R.id.instructorNameEditText);
         instructorEmail = findViewById(R.id.instructorEmailEditText);
         instructorPhone = findViewById(R.id.instructorPhoneEditText);
+        courseID = getIntent().getIntExtra("courseID", -1);
 
         setTitle(getIntent().getStringExtra("name"));
         instructorName.setText(getIntent().getStringExtra("name"));
@@ -61,10 +63,10 @@ public class InstructorEditActivity extends AppCompatActivity {
                 if (instructorID == -1) {
                     if (repository.getmAllInstructors().isEmpty()) instructorID = 1;
                     else instructorID = repository.getmAllInstructors().get(repository.getmAllTerms().size() - 1).getInstructorID() + 1;
-                    instructor = new Instructor(instructorID, instructorName.getText().toString(), instructorPhone.getText().toString(), instructorEmail.getText().toString());
+                    instructor = new Instructor(instructorID, instructorName.getText().toString(), instructorPhone.getText().toString(), instructorEmail.getText().toString(), courseID);
                     repository.insert(instructor);
                 } else {
-                    instructor = new Instructor(instructorID, instructorName.getText().toString(), instructorPhone.getText().toString(), instructorEmail.getText().toString());
+                    instructor = new Instructor(instructorID, instructorName.getText().toString(), instructorPhone.getText().toString(), instructorEmail.getText().toString(), courseID);
                     repository.update(instructor);
                 }
             } catch (InterruptedException e) {

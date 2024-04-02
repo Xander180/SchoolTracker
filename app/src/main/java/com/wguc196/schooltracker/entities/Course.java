@@ -51,7 +51,6 @@ public class Course {
         this.endDate = endDate;
         this.courseStatus = courseStatus;
         this.note = note;
-
     }
 
 

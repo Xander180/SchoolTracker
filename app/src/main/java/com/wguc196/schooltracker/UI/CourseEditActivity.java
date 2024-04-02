@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -32,6 +33,7 @@ import java.util.Objects;
 public class CourseEditActivity extends AppCompatActivity {
 
     private int courseID;
+    private int termID;
     ArrayAdapter<CourseStatus> courseStatusArrayAdapter;
     EditText courseTitle;
     EditText courseStartDate;
@@ -40,6 +42,7 @@ public class CourseEditActivity extends AppCompatActivity {
     ImageButton courseEndButton;
     Spinner courseStatus;
     EditText note;
+    CheckBox setReminder;
     Repository repository;
 
 
@@ -90,6 +93,8 @@ public class CourseEditActivity extends AppCompatActivity {
         courseEndDate = findViewById(R.id.courseEndEditText);
         courseStatus = findViewById(R.id.courseStatusSpinner);
         note = findViewById(R.id.courseNoteEditText);
+        termID = getIntent().getIntExtra("termID", -1);
+        setReminder = findViewById(R.id.setReminderCheckBox);
 
         setSpinnerItems();
         Course course;
@@ -139,15 +144,18 @@ public class CourseEditActivity extends AppCompatActivity {
                     if (repository.getmAllCourses().isEmpty()) courseID = 1;
                     else courseID = repository.getmAllCourses().get(repository.getmAllCourses().size() - 1).getCourseID() + 1;
                     course = new Course(courseID, courseTitle.getText().toString(), TextFormatting.fullDateFormat.parse(courseStartDate.getText().toString()),
-                            TextFormatting.fullDateFormat.parse(courseEndDate.getText().toString()), getSpinnerValue(), note.getText().toString());
+                            TextFormatting.fullDateFormat.parse(courseEndDate.getText().toString()), getSpinnerValue(), note.getText().toString(), termID);
                     repository.insert(course);
                 } else {
                     course = new Course(courseID, courseTitle.getText().toString(), TextFormatting.fullDateFormat.parse(courseStartDate.getText().toString()),
-                            TextFormatting.fullDateFormat.parse(courseEndDate.getText().toString()), getSpinnerValue(), note.getText().toString());
+                            TextFormatting.fullDateFormat.parse(courseEndDate.getText().toString()), getSpinnerValue(), note.getText().toString(), termID);
                     repository.update(course);
                 }
             } catch (ParseException | InterruptedException e) {
                 throw new RuntimeException(e);
+            }
+            if (setReminder.isChecked()) {
+                System.out.println("Box is checked");
             }
             Toast.makeText(CourseEditActivity.this, "Data has been saved.", Toast.LENGTH_LONG).show();
             this.finish();

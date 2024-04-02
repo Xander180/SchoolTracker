@@ -33,6 +33,7 @@ public class InstructorDetailsActivity extends AppCompatActivity {
             intent.putExtra("name", getIntent().getStringExtra("name"));
             intent.putExtra("email", getIntent().getStringExtra("email"));
             intent.putExtra("phone", getIntent().getStringExtra("phone"));
+            intent.putExtra("courseID", getIntent().getIntExtra("courseID", -1));
             startActivity(intent);
         });
 

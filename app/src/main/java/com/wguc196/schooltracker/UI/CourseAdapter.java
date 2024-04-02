@@ -46,6 +46,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 } else {
                     intent.putExtra("note", "");
                 }
+                intent.putExtra("termID", current.getTermID());
                 context.startActivity(intent);
             });
         }
