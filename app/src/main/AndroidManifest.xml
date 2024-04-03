@@ -12,31 +12,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SchoolTracker"
         tools:targetApi="31">
+        <receiver
+            android:name=".helpers.Receiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
         <activity
             android:name=".UI.InstructorDetailsActivity"
             android:exported="false"
-            android:parentActivityName=".UI.InstructorsListActivity"/>
+            android:parentActivityName=".UI.InstructorsListActivity" />
         <activity
             android:name=".UI.InstructorEditActivity"
             android:exported="false"
-            android:parentActivityName=".UI.InstructorsListActivity"/>
+            android:parentActivityName=".UI.InstructorsListActivity" />
         <activity
             android:name=".UI.InstructorsListActivity"
             android:exported="false"
             android:label="@string/instructors"
-            android:parentActivityName=".UI.MainActivity"/>
+            android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".UI.AssessmentDetailsActivity"
             android:exported="false"
-            android:parentActivityName=".UI.AssessmentsListActivity"/>
+            android:parentActivityName=".UI.AssessmentsListActivity" />
         <activity
             android:name=".UI.CourseDetailsActivity"
             android:exported="false"
-            android:parentActivityName=".UI.CoursesListActivity"/>
+            android:parentActivityName=".UI.CoursesListActivity" />
         <activity
             android:name=".UI.TermDetailsActivity"
             android:exported="false"
-            android:parentActivityName=".UI.TermsListActivity"/>
+            android:parentActivityName=".UI.TermsListActivity" />
         <activity
             android:name=".UI.AssessmentEditActivity"
             android:exported="false"

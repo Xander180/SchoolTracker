@@ -1,7 +1,12 @@
 package com.wguc196.schooltracker.UI;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,7 +21,11 @@ import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Assessment;
 import com.wguc196.schooltracker.entities.Course;
 import com.wguc196.schooltracker.entities.Instructor;
+import com.wguc196.schooltracker.helpers.Receiver;
+import com.wguc196.schooltracker.helpers.TextFormatting;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -104,6 +113,36 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
         assessmentAdapter.setAssessments(associatedAssessments);
         instructorAdapter.setInstructors(associatedInstructors);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_set_reminder, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        int id = menuItem.getItemId();
+
+        if (id == R.id.set_reminder) {
+            String courseTitle = course.getTitle();
+            String startDateText = courseStartDate.getText().toString();
+            Date startDate = null;
+            try {
+                startDate = TextFormatting.fullDateFormat.parse(startDateText);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            Long trigger = startDate.getTime();
+            Intent intent = new Intent(CourseDetailsActivity.this, Receiver.class);
+            intent.putExtra("courseStartReminder", courseTitle + "is starting!");
+            PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+        }
+
+        return true;
     }
 
     @Override

@@ -17,6 +17,7 @@ import com.wguc196.schooltracker.helpers.SampleData;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static int numAlert;
     Button termsButton;
     Button coursesButton;
     Button assessmentsButton;

@@ -2,11 +2,13 @@ package com.wguc196.schooltracker.UI;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -42,7 +44,6 @@ public class CourseEditActivity extends AppCompatActivity {
     ImageButton courseEndButton;
     Spinner courseStatus;
     EditText note;
-    CheckBox setReminder;
     Repository repository;
 
 
@@ -94,7 +95,6 @@ public class CourseEditActivity extends AppCompatActivity {
         courseStatus = findViewById(R.id.courseStatusSpinner);
         note = findViewById(R.id.courseNoteEditText);
         termID = getIntent().getIntExtra("termID", -1);
-        setReminder = findViewById(R.id.setReminderCheckBox);
 
         setSpinnerItems();
         Course course;
@@ -110,8 +110,6 @@ public class CourseEditActivity extends AppCompatActivity {
         int position = getSpinnerPosition(course.getCourseStatus());
         courseStatus.setSelection(position);
         note.setText(getIntent().getStringExtra("note"));
-
-
     }
 
     public void setSpinnerItems() {
@@ -153,9 +151,6 @@ public class CourseEditActivity extends AppCompatActivity {
                 }
             } catch (ParseException | InterruptedException e) {
                 throw new RuntimeException(e);
-            }
-            if (setReminder.isChecked()) {
-                System.out.println("Box is checked");
             }
             Toast.makeText(CourseEditActivity.this, "Data has been saved.", Toast.LENGTH_LONG).show();
             this.finish();
