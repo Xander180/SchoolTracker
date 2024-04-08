@@ -2,7 +2,9 @@ package com.wguc196.schooltracker.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
 import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Course;
+import com.wguc196.schooltracker.entities.Term;
 
 import java.util.List;
 
@@ -22,7 +25,7 @@ public class TermDetailsActivity extends AppCompatActivity {
     TextView termStartDate;
     TextView termEndDate;
     FloatingActionButton editTerm;
-    FloatingActionButton delete;
+    FloatingActionButton deleteTerm;
     FloatingActionButton addCourse;
     List<Course> associatedCourses;
     RecyclerView recyclerView;
@@ -43,6 +46,27 @@ public class TermDetailsActivity extends AppCompatActivity {
             intent.putExtra("endDate", getIntent().getStringExtra("endDate"));
             startActivity(intent);
             finish();
+        });
+
+        deleteTerm = findViewById(R.id.deleteButton);
+        deleteTerm.setOnClickListener(v -> {
+            try {
+                for (Term term : repository.getmAllTerms()) {
+                    Term currentTerm;
+                    if (term.getTermID() == getIntent().getIntExtra("termID", -1)) {
+                        currentTerm = term;
+                        if (associatedCourses.isEmpty()) {
+                            repository.delete(currentTerm);
+                            Toast.makeText(TermDetailsActivity.this, currentTerm.getTitle() + " has been deleted.", Toast.LENGTH_LONG).show();
+                            finish();
+                        } else {
+                            Toast.makeText(TermDetailsActivity.this, "Cannot delete term with courses!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 

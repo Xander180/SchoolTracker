@@ -20,12 +20,13 @@ public class Receiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
-        Toast.makeText(context, intent.getStringExtra("courseReminder"), Toast.LENGTH_LONG).show();
+        //channelID = intent.getStringExtra("type");
+        Toast.makeText(context, intent.getStringExtra("reminder"), Toast.LENGTH_LONG).show();
         createNotificationChannel(context, channelID);
         Notification notification = new NotificationCompat.Builder(context, channelID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentText(intent.getStringExtra("key"))
-                .setContentTitle("Notification Test").build();
+                .setContentText(intent.getStringExtra("reminder"))
+                .setContentTitle("Alert!").build();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(notificationID++, notification);
 

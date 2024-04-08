@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Assessment;
 import com.wguc196.schooltracker.entities.Course;
 import com.wguc196.schooltracker.entities.Instructor;
+import com.wguc196.schooltracker.entities.Term;
 import com.wguc196.schooltracker.helpers.Receiver;
 import com.wguc196.schooltracker.helpers.TextFormatting;
 
@@ -36,7 +38,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
     TextView status;
     TextView note;
     FloatingActionButton editCourse;
-    FloatingActionButton delete;
+    FloatingActionButton deleteCourse;
     FloatingActionButton addAssessment;
     FloatingActionButton shareNote;
     List<Assessment> associatedAssessments;
@@ -64,6 +66,27 @@ public class CourseDetailsActivity extends AppCompatActivity {
             intent.putExtra("termID", getIntent().getIntExtra("termID", -1));
             startActivity(intent);
             this.finish();
+        });
+
+        deleteCourse = findViewById(R.id.deleteButton);
+        deleteCourse.setOnClickListener(v -> {
+            try {
+                for (Course course : repository.getmAllCourses()) {
+                    Course currentCourse;
+                    if (course.getCourseID() == getIntent().getIntExtra("courseID", -1)) {
+                        currentCourse = course;
+                        if (associatedAssessments.isEmpty()) {
+                            repository.delete(currentCourse);
+                            Toast.makeText(CourseDetailsActivity.this, currentCourse.getTitle() + " has been deleted.", Toast.LENGTH_LONG).show();
+                            finish();
+                        } else {
+                            Toast.makeText(CourseDetailsActivity.this, "Cannot delete course with assessments!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         shareNote = findViewById(R.id.shareNoteButton);
@@ -127,7 +150,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
         int id = menuItem.getItemId();
 
         if (id == R.id.set_reminder) {
-            String courseTitle = course.getTitle();
             String startDateText = courseStartDate.getText().toString();
             String endDateText = courseEndDate.getText().toString();
             Date startDate;
@@ -138,11 +160,14 @@ public class CourseDetailsActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-            Long startTrigger = startDate.getTime();
-            Long endTrigger = endDate.getTime();
+            assert startDate != null;
+            long startTrigger = startDate.getTime();
+            assert endDate != null;
+            long endTrigger = endDate.getTime();
+
             Intent intent = new Intent(CourseDetailsActivity.this, Receiver.class);
-            intent.putExtra("courseReminder", "Reminder has been set");
-            PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
+            intent.putExtra("reminder",  getIntent().getStringExtra("title") + " is now due!");
+            PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_MUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, startTrigger, sender);
             alarmManager.set(AlarmManager.RTC_WAKEUP, endTrigger, sender);

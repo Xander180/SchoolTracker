@@ -4,21 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
+import com.wguc196.schooltracker.database.Repository;
+import com.wguc196.schooltracker.entities.Assessment;
+import com.wguc196.schooltracker.entities.Instructor;
 
 public class InstructorDetailsActivity extends AppCompatActivity {
 
     TextView instructorEmail;
     TextView instructorPhone;
     FloatingActionButton editInstructor;
+    FloatingActionButton deleteInstructor;
+    Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,22 @@ public class InstructorDetailsActivity extends AppCompatActivity {
             intent.putExtra("phone", getIntent().getStringExtra("phone"));
             intent.putExtra("courseID", getIntent().getIntExtra("courseID", -1));
             startActivity(intent);
+        });
+
+        deleteInstructor = findViewById(R.id.deleteButton);
+        deleteInstructor.setOnClickListener(v -> {
+            try {
+                for (Instructor instructor : repository.getmAllInstructors()) {
+                    Instructor currentInstructor;
+                    if (instructor.getInstructorID() == getIntent().getIntExtra("instructorID", -1)) {
+                        currentInstructor = instructor;
+                        repository.delete(currentInstructor);
+                        Toast.makeText(InstructorDetailsActivity.this, currentInstructor.getName() + " has been deleted.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         instructorEmail = findViewById(R.id.instructorEmailTextView);
