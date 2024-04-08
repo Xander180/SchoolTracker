@@ -63,6 +63,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
             intent.putExtra("note", getIntent().getStringExtra("note"));
             intent.putExtra("termID", getIntent().getIntExtra("termID", -1));
             startActivity(intent);
+            this.finish();
         });
 
         shareNote = findViewById(R.id.shareNoteButton);
@@ -128,18 +129,25 @@ public class CourseDetailsActivity extends AppCompatActivity {
         if (id == R.id.set_reminder) {
             String courseTitle = course.getTitle();
             String startDateText = courseStartDate.getText().toString();
-            Date startDate = null;
+            String endDateText = courseEndDate.getText().toString();
+            Date startDate;
+            Date endDate;
             try {
                 startDate = TextFormatting.fullDateFormat.parse(startDateText);
+                endDate = TextFormatting.fullDateFormat.parse(endDateText);
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-            Long trigger = startDate.getTime();
+            Long startTrigger = startDate.getTime();
+            Long endTrigger = endDate.getTime();
             Intent intent = new Intent(CourseDetailsActivity.this, Receiver.class);
-            intent.putExtra("courseStartReminder", courseTitle + "is starting!");
+            intent.putExtra("courseReminder", "Reminder has been set");
             PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, startTrigger, sender);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, endTrigger, sender);
+        } else {
+            getOnBackPressedDispatcher().onBackPressed();
         }
 
         return true;

@@ -17,16 +17,13 @@ import java.util.List;
 
 public class CoursesListActivity extends AppCompatActivity {
 
-    List<Course> allCourses;
+    FloatingActionButton addButton;
+    RecyclerView recyclerView;
     Repository repository;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        FloatingActionButton addButton;
-        RecyclerView recyclerView;
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_courses_list);
@@ -39,14 +36,20 @@ public class CoursesListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.coursesRecyclerView);
         repository = new Repository(getApplication());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         try {
-            allCourses = repository.getmAllCourses();
+            List<Course> allCourses = repository.getmAllCourses();
+            RecyclerView recyclerView = findViewById(R.id.coursesRecyclerView);
+            final CourseAdapter courseAdapter = new CourseAdapter(this);
+            recyclerView.setAdapter(courseAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            courseAdapter.setCourses(allCourses);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        final CourseAdapter courseAdapter = new CourseAdapter(this);
-        recyclerView.setAdapter(courseAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        courseAdapter.setCourses(allCourses);
     }
 }

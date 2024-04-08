@@ -124,7 +124,7 @@ public class TermEditActivity extends AppCompatActivity {
             } catch (ParseException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            Toast.makeText(TermEditActivity.this, "Data has been saved.", Toast.LENGTH_LONG).show();
+            Toast.makeText(TermEditActivity.this, "Term has been saved.", Toast.LENGTH_LONG).show();
             this.finish();
             return true;
         }

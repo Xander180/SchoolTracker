@@ -108,6 +108,7 @@ public class AssessmentEditActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.save_data) {
+            Repository repository = new Repository(getApplication());
             Assessment assessment;
             try {
                 if (assessmentID == -1) {
@@ -124,7 +125,7 @@ public class AssessmentEditActivity extends AppCompatActivity {
             } catch (ParseException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            Toast.makeText(AssessmentEditActivity.this, "Data has been saved.", Toast.LENGTH_LONG).show();
+            Toast.makeText(AssessmentEditActivity.this, "Assessment has been saved.", Toast.LENGTH_LONG).show();
             this.finish();
             return true;
         }

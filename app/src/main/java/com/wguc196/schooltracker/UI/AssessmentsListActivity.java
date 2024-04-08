@@ -17,13 +17,13 @@ import java.util.List;
 
 public class AssessmentsListActivity extends AppCompatActivity {
 
-    List<Assessment> allAssessments;
+
+    FloatingActionButton addButton;
+    RecyclerView recyclerView;
     Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FloatingActionButton addButton;
-        RecyclerView recyclerView;
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -37,14 +37,20 @@ public class AssessmentsListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.assessmentsRecyclerView);
         repository = new Repository(getApplication());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         try {
-            allAssessments = repository.getmAllAssessments();
+            List<Assessment> allAssessments = repository.getmAllAssessments();
+            RecyclerView recyclerView = findViewById(R.id.assessmentsRecyclerView);
+            final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
+            recyclerView.setAdapter(assessmentAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            assessmentAdapter.setAssessments(allAssessments);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
-        recyclerView.setAdapter(assessmentAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assessmentAdapter.setAssessments(allAssessments);
     }
 }

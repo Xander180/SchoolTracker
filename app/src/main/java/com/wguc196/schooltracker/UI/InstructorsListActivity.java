@@ -18,7 +18,7 @@ import java.util.List;
 
 public class InstructorsListActivity extends AppCompatActivity {
 
-    List<Instructor> allInstructors;
+    RecyclerView recyclerView;
     Repository repository;
 
     @Override
@@ -35,12 +35,16 @@ public class InstructorsListActivity extends AppCompatActivity {
             Intent intent = new Intent(InstructorsListActivity.this, InstructorEditActivity.class);
             startActivity(intent);
         });
+
+        recyclerView = findViewById(R.id.instructorsRecyclerView);
+        repository = new Repository(getApplication());
     }
 
-    private void loadData() {
+    @Override
+    protected void onResume() {
+        super.onResume();
         try {
-            repository = new Repository(getApplication());
-            allInstructors = repository.getmAllInstructors();
+            List<Instructor> allInstructors = repository.getmAllInstructors();
             RecyclerView recyclerView = findViewById(R.id.instructorsRecyclerView);
             final InstructorAdapter instructorAdapter = new InstructorAdapter(this);
             recyclerView.setAdapter(instructorAdapter);
@@ -49,11 +53,5 @@ public class InstructorsListActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadData();
     }
 }

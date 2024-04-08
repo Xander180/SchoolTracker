@@ -72,7 +72,7 @@ public class InstructorEditActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            Toast.makeText(InstructorEditActivity.this, "Data has been saved.", Toast.LENGTH_LONG).show();
+            Toast.makeText(InstructorEditActivity.this, "Instructor has been saved.", Toast.LENGTH_LONG).show();
             this.finish();
             return true;
         }

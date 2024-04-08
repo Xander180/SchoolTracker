@@ -57,6 +57,13 @@ public class CourseEditActivity extends AppCompatActivity {
         courseStartButton = findViewById(R.id.courseStartEditButton);
         courseStartButton.setOnClickListener(v -> {
             Calendar calendarStart = Calendar.getInstance();
+            if (!courseStartDate.getText().toString().isEmpty()) {
+                try {
+                    calendarStart.setTime(Objects.requireNonNull(TextFormatting.fullDateFormat.parse(courseStartDate.getText().toString())));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
             DatePickerDialog.OnDateSetListener startDatePicker = (view, year, month, dayOfMonth) -> {
                 calendarStart.set(Calendar.YEAR, year);
                 calendarStart.set(Calendar.MONTH, month);
@@ -136,6 +143,7 @@ public class CourseEditActivity extends AppCompatActivity {
         int id = menuItem.getItemId();
 
         if (id == R.id.save_data) {
+            Repository repository = new Repository(getApplication());
             Course course;
             try {
                 if (courseID == -1) {
@@ -152,7 +160,7 @@ public class CourseEditActivity extends AppCompatActivity {
             } catch (ParseException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            Toast.makeText(CourseEditActivity.this, "Data has been saved.", Toast.LENGTH_LONG).show();
+            Toast.makeText(CourseEditActivity.this, "Course has been saved.", Toast.LENGTH_LONG).show();
             this.finish();
             return true;
         }
