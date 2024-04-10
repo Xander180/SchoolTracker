@@ -164,23 +164,34 @@
         app:layout_constraintTop_toBottomOf="@+id/divider"
         app:srcCompat="@drawable/baseline_add_24" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/instructorAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:clickable="true"
+        android:contentDescription="Add Instructor Button"
+        app:backgroundTint="#673AB7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/associatedAssessmentsRecyclerView"
+        app:srcCompat="@drawable/baseline_add_24" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="232dp"
         android:text="@string/instructors"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/associatedAssessmentsRecyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/associatedAssessmentsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="84dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -189,9 +200,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="620dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/associatedAssessmentsRecyclerView" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareNoteButton"

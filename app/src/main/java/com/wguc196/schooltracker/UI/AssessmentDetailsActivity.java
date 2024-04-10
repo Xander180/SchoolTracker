@@ -84,20 +84,21 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
 
         if (id == R.id.set_reminder) {
             String startDateText = assessmentStart.getText().toString();
-            Date startDate;
+            Date dueDate;
             try {
-                startDate = TextFormatting.fullDateFormat.parse(startDateText);
+                dueDate = TextFormatting.fullDateFormat.parse(startDateText);
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-            assert startDate != null;
-            long startTrigger = startDate.getTime();
+            assert dueDate != null;
+            long startTrigger = dueDate.getTime();
 
             Intent intent = new Intent(AssessmentDetailsActivity.this, Receiver.class);
             intent.putExtra("reminder",  getIntent().getStringExtra("title") + " is now due!");
             PendingIntent sender = PendingIntent.getBroadcast(AssessmentDetailsActivity.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_MUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, startTrigger, sender);
+            Toast.makeText(AssessmentDetailsActivity.this, "Reminder has been set", Toast.LENGTH_LONG).show();
         } else {
             getOnBackPressedDispatcher().onBackPressed();
         }

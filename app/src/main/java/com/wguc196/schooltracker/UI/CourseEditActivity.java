@@ -114,8 +114,12 @@ public class CourseEditActivity extends AppCompatActivity {
         courseTitle.setText(getIntent().getStringExtra("title"));
         courseStartDate.setText(getIntent().getStringExtra("startDate"));
         courseEndDate.setText(getIntent().getStringExtra("endDate"));
-        int position = getSpinnerPosition(course.getCourseStatus());
-        courseStatus.setSelection(position);
+        if (course != null) {
+            int position = getSpinnerPosition(course.getCourseStatus());
+            courseStatus.setSelection(position);
+        } else {
+            courseStatus.setSelection(0);
+        }
         note.setText(getIntent().getStringExtra("note"));
     }
 

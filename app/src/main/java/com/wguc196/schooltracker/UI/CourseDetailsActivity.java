@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,11 +22,13 @@ import com.wguc196.schooltracker.database.Repository;
 import com.wguc196.schooltracker.entities.Assessment;
 import com.wguc196.schooltracker.entities.Course;
 import com.wguc196.schooltracker.entities.Instructor;
-import com.wguc196.schooltracker.entities.Term;
+import com.wguc196.schooltracker.helpers.AssessmentDropDownMenu;
+import com.wguc196.schooltracker.helpers.InstructorDropDownMenu;
 import com.wguc196.schooltracker.helpers.Receiver;
 import com.wguc196.schooltracker.helpers.TextFormatting;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,9 +42,14 @@ public class CourseDetailsActivity extends AppCompatActivity {
     FloatingActionButton editCourse;
     FloatingActionButton deleteCourse;
     FloatingActionButton addAssessment;
+    FloatingActionButton addInstructor;
     FloatingActionButton shareNote;
     List<Assessment> associatedAssessments;
     List<Instructor> associatedInstructors;
+    List<Assessment> allAssessments;
+    List<Instructor> allInstructors;
+    List<Assessment> unassignedAssessments;
+    List<Instructor> unassignedInstructors;
     Repository repository;
     Course course;
     RecyclerView assessmentsRecyclerView;
@@ -89,6 +96,48 @@ public class CourseDetailsActivity extends AppCompatActivity {
             }
         });
 
+        addAssessment = findViewById(R.id.assessmentAddButton);
+        addAssessment.setOnClickListener(v -> {
+            if (!unassignedAssessments.isEmpty()) {
+                int courseID = getIntent().getIntExtra("courseID", -1);
+                final AssessmentDropDownMenu menu = new AssessmentDropDownMenu(this, unassignedAssessments);
+                menu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+                menu.setWidth(getPxFromDp());
+                menu.setOutsideTouchable(true);
+                menu.setFocusable(true);
+                menu.showAsDropDown(addAssessment);
+                menu.setAssessmentSelectedListener((position, assessment) -> {
+                    menu.dismiss();
+                    assessment.setCourseID(courseID);
+                    repository.update(assessment);
+                    onResume();
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "There are no unassigned assessments.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addInstructor = findViewById(R.id.instructorAddButton);
+        addInstructor.setOnClickListener(v -> {
+            if (!unassignedInstructors.isEmpty()) {
+                int courseID = getIntent().getIntExtra("courseID", -1);
+                final InstructorDropDownMenu menu = new InstructorDropDownMenu(this, unassignedInstructors);
+                menu.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+                menu.setWidth(getPxFromDp());
+                menu.setOutsideTouchable(true);
+                menu.setFocusable(true);
+                menu.showAsDropDown(addInstructor);
+                menu.setInstructorSelectedListener((position, instructor) -> {
+                    menu.dismiss();
+                    instructor.setCourseID(courseID);
+                    repository.update(instructor);
+                    onResume();
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "There are no unassigned instructors.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         shareNote = findViewById(R.id.shareNoteButton);
         shareNote.setOnClickListener(v -> {
             Intent sentIntent = new Intent();
@@ -123,6 +172,8 @@ public class CourseDetailsActivity extends AppCompatActivity {
             course = repository.getCourse(getIntent().getIntExtra("courseID", -1));
             associatedAssessments = repository.getmAssociatedAssessments(getIntent().getIntExtra("courseID", 1));
             associatedInstructors = repository.getmAssociatedInstructors(getIntent().getIntExtra("courseID", 1));
+            allAssessments = repository.getmAllAssessments();
+            allInstructors = repository.getmAllInstructors();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -171,6 +222,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, startTrigger, sender);
             alarmManager.set(AlarmManager.RTC_WAKEUP, endTrigger, sender);
+            Toast.makeText(CourseDetailsActivity.this, "Reminder has been set", Toast.LENGTH_LONG).show();
         } else {
             getOnBackPressedDispatcher().onBackPressed();
         }
@@ -178,10 +230,43 @@ public class CourseDetailsActivity extends AppCompatActivity {
         return true;
     }
 
+    private int getPxFromDp() {
+        return (int) (200 * getResources().getDisplayMetrics().density);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+        unassignedAssessments = new ArrayList<>();
+        unassignedInstructors = new ArrayList<>();
         loadRepositoryData();
         loadCourseData();
+
+        if (associatedAssessments.isEmpty()) {
+            unassignedAssessments.addAll(allAssessments);
+        } else {
+            for (Assessment assessment : allAssessments) {
+                for (Assessment associatedAssessment : associatedAssessments) {
+                    if (assessment.getCourseID() != associatedAssessment.getCourseID()) {
+                        unassignedAssessments.add(assessment);
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (associatedInstructors.isEmpty()) {
+            unassignedInstructors.addAll(allInstructors);
+        } else {
+            for (Instructor instructor : allInstructors) {
+                for (Instructor associatedInstructor : associatedInstructors) {
+                    if (instructor.getCourseID() != associatedInstructor.getCourseID()) {
+                        unassignedInstructors.add(instructor);
+                    }
+                    break;
+                }
+            }
+        }
+
     }
 }

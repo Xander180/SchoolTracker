@@ -78,11 +78,12 @@ public class AssessmentEditActivity extends AppCompatActivity {
         setTitle(getIntent().getStringExtra("title"));
         assessmentTitle.setText(getIntent().getStringExtra("title"));
         assessmentDueDate.setText(getIntent().getStringExtra("date"));
-        int position = getSpinnerPosition(assessment.getAssessmentType());
-        assessmentType.setSelection(position);
-
-
-
+        if (assessment != null) {
+            int position = getSpinnerPosition(assessment.getAssessmentType());
+            assessmentType.setSelection(position);
+        } else {
+            assessmentType.setSelection(0);
+        }
     }
 
     public void setSpinnerItems() {
