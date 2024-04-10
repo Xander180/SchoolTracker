@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".UI.CourseEditActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/courseTitleEditText"
+            android:layout_width="363dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/courseStartEditText"
+            android:layout_width="293dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="88dp"
+            android:ems="10"
+            android:hint="Start Date - MM/DD/YY"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/courseEndEditText"
+            android:layout_width="293dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="164dp"
+            android:ems="10"
+            android:hint="End Date - MM/DD/YY"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/courseStartEditButton"
+            android:layout_width="58dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="88dp"
+            app:layout_constraintStart_toEndOf="@+id/courseStartEditText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_calendar_month_24" />
+
+        <ImageButton
+            android:id="@+id/courseEndEditButton"
+            android:layout_width="58dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="164dp"
+            app:layout_constraintStart_toEndOf="@+id/courseEndEditText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_calendar_month_24" />
+
+        <TextView
+            android:id="@+id/courseStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="352dp"
+            android:text="Course Status"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseEndEditText"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Spinner
+            android:id="@+id/courseStatusSpinner"
+            android:layout_width="363dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseStatusText" />
+
+        <EditText
+            android:id="@+id/courseNoteEditText"
+            android:layout_width="363dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:hint="Note"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseStatusSpinner" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

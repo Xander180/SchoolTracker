@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".UI.TermEditActivity">
+
+    <EditText
+        android:id="@+id/termTitleEditText"
+        android:layout_width="363dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="72dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/termStartEditText"
+        android:layout_width="293dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="164dp"
+        android:ems="10"
+        android:hint="Start Date - MM/DD/YY"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/termEndEditText"
+        android:layout_width="293dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="244dp"
+        android:ems="10"
+        android:hint="End Date - MM/DD/YY"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/termStartEditButton"
+        android:layout_width="58dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="164dp"
+        app:layout_constraintStart_toEndOf="@+id/termStartEditText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_calendar_month_24" />
+
+    <ImageButton
+        android:id="@+id/termEndEditButton"
+        android:layout_width="58dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="244dp"
+        app:layout_constraintStart_toEndOf="@+id/termEndEditText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_calendar_month_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

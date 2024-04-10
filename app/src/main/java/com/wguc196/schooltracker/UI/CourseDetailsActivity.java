@@ -61,6 +61,15 @@ public class CourseDetailsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_course_details);
 
+        repository = new Repository(getApplication());
+
+        try {
+            allAssessments = repository.getmAllAssessments();
+            allInstructors = repository.getmAllInstructors();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         editCourse = findViewById(R.id.editCourseButton);
         editCourse.setOnClickListener(v -> {
             Intent intent = new Intent(CourseDetailsActivity.this, CourseEditActivity.class);
@@ -164,6 +173,32 @@ public class CourseDetailsActivity extends AppCompatActivity {
         courseEndDate.setText(getIntent().getStringExtra("endDate"));
         status.setText(course.getCourseStatus().toString());
         note.setText(getIntent().getStringExtra("note"));
+
+        if (associatedAssessments.isEmpty()) {
+            unassignedAssessments.addAll(allAssessments);
+        } else {
+            for (Assessment assessment : allAssessments) {
+                for (Assessment associatedAssessment : associatedAssessments) {
+                    if (assessment.getCourseID() != associatedAssessment.getCourseID()) {
+                        unassignedAssessments.add(assessment);
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (associatedInstructors.isEmpty()) {
+            unassignedInstructors.addAll(allInstructors);
+        } else {
+            for (Instructor instructor : allInstructors) {
+                for (Instructor associatedInstructor : associatedInstructors) {
+                    if (instructor.getCourseID() != associatedInstructor.getCourseID()) {
+                        unassignedInstructors.add(instructor);
+                    }
+                    break;
+                }
+            }
+        }
     }
 
     private void loadRepositoryData() {
@@ -172,8 +207,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
             course = repository.getCourse(getIntent().getIntExtra("courseID", -1));
             associatedAssessments = repository.getmAssociatedAssessments(getIntent().getIntExtra("courseID", 1));
             associatedInstructors = repository.getmAssociatedInstructors(getIntent().getIntExtra("courseID", 1));
-            allAssessments = repository.getmAllAssessments();
-            allInstructors = repository.getmAllInstructors();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -241,32 +274,5 @@ public class CourseDetailsActivity extends AppCompatActivity {
         unassignedInstructors = new ArrayList<>();
         loadRepositoryData();
         loadCourseData();
-
-        if (associatedAssessments.isEmpty()) {
-            unassignedAssessments.addAll(allAssessments);
-        } else {
-            for (Assessment assessment : allAssessments) {
-                for (Assessment associatedAssessment : associatedAssessments) {
-                    if (assessment.getCourseID() != associatedAssessment.getCourseID()) {
-                        unassignedAssessments.add(assessment);
-                    }
-                    break;
-                }
-            }
-        }
-
-        if (associatedInstructors.isEmpty()) {
-            unassignedInstructors.addAll(allInstructors);
-        } else {
-            for (Instructor instructor : allInstructors) {
-                for (Instructor associatedInstructor : associatedInstructors) {
-                    if (instructor.getCourseID() != associatedInstructor.getCourseID()) {
-                        unassignedInstructors.add(instructor);
-                    }
-                    break;
-                }
-            }
-        }
-
     }
 }

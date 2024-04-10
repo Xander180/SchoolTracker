@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".UI.MainActivity"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <Button
+            android:id="@+id/termsButton"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="36dp"
+            android:backgroundTint="#673AB7"
+            android:text="@string/terms"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/baseline_calendar_month_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/termsButton"
+            android:contentDescription="@string/terms_icon" />
+
+        <Button
+            android:id="@+id/coursesButton"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#673AB7"
+            android:paddingStart="60dp"
+            android:text="@string/courses"
+            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@+id/termsButton"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/baseline_library_books_24"
+            app:layout_constraintStart_toStartOf="@+id/coursesButton"
+            app:layout_constraintTop_toTopOf="@+id/coursesButton"
+            android:contentDescription="@string/courses_icon" />
+
+        <Button
+            android:id="@+id/assessmentsButton"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#673AB7"
+            android:paddingStart="130dp"
+            android:text="@string/assessments"
+            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@+id/coursesButton"
+            tools:layout_editor_absoluteX="-16dp" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/baseline_edit_note_24"
+            app:layout_constraintStart_toStartOf="@+id/assessmentsButton"
+            app:layout_constraintTop_toTopOf="@+id/assessmentsButton"
+            android:contentDescription="@string/assessments_icon" />
+
+        <Button
+            android:id="@+id/instructorsButton"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#673AB7"
+            android:paddingStart="90dp"
+            android:text="@string/instructors"
+            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@+id/assessmentsButton"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/baseline_contacts_24"
+            app:layout_constraintStart_toStartOf="@+id/instructorsButton"
+            app:layout_constraintTop_toTopOf="@+id/instructorsButton"
+            android:contentDescription="@string/mentors_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
