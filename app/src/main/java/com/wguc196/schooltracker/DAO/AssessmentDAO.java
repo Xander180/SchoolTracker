@@ -8,7 +8,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.wguc196.schooltracker.entities.Assessment;
-import com.wguc196.schooltracker.entities.Course;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@ public class Assessment {
     private int assessmentID;
     private String title;
     private Date date;
-    private AssessmentType assessmentType;
+    private final AssessmentType assessmentType;
     private int courseID;
 
     @Ignore
@@ -36,10 +36,6 @@ public class Assessment {
         return assessmentID;
     }
 
-    public void setAssessmentID(int assessmentID) {
-        this.assessmentID = assessmentID;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -58,10 +54,6 @@ public class Assessment {
 
     public AssessmentType getAssessmentType() {
         return assessmentType;
-    }
-
-    public void setAssessmentType(AssessmentType assessmentType) {
-        this.assessmentType = assessmentType;
     }
 
     public int getCourseID() {

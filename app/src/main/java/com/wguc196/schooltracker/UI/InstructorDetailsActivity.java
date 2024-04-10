@@ -2,7 +2,6 @@ package com.wguc196.schooltracker.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wguc196.schooltracker.R;
 import com.wguc196.schooltracker.database.Repository;
-import com.wguc196.schooltracker.entities.Assessment;
 import com.wguc196.schooltracker.entities.Instructor;
 
 public class InstructorDetailsActivity extends AppCompatActivity {

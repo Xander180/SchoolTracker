@@ -91,10 +91,6 @@ public class Course {
         return courseStatus;
     }
 
-    public void setCourseStatus(CourseStatus courseStatus) {
-        this.courseStatus = courseStatus;
-    }
-
     public String getNote() {
         return note;
     }

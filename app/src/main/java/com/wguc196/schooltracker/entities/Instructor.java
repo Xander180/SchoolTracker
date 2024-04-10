@@ -46,10 +46,6 @@ public class Instructor {
         return instructorID;
     }
 
-    public void setInstructorID(int instructorID) {
-        this.instructorID = instructorID;
-    }
-
     public String getName() {
         return name;
     }
@@ -62,16 +58,8 @@ public class Instructor {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public int getCourseID() {

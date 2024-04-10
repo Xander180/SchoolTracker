@@ -2,8 +2,6 @@ package com.wguc196.schooltracker.database;
 
 import android.app.Application;
 
-import androidx.room.Ignore;
-
 import com.wguc196.schooltracker.DAO.AssessmentDAO;
 import com.wguc196.schooltracker.DAO.CourseDAO;
 import com.wguc196.schooltracker.DAO.InstructorDAO;
@@ -44,9 +42,7 @@ public class Repository {
 
     // Terms
     public List<Term> getmAllTerms() throws InterruptedException {
-        databaseExecutor.execute(() -> {
-            mAllTerms = mTermDAO.getAllTerms();
-        });
+        databaseExecutor.execute(() -> mAllTerms = mTermDAO.getAllTerms());
 
         try {
             Thread.sleep(1000);
@@ -58,9 +54,7 @@ public class Repository {
     }
 
     public void insert(Term term) {
-        databaseExecutor.execute(() -> {
-            mTermDAO.insert(term);
-        });
+        databaseExecutor.execute(() -> mTermDAO.insert(term));
 
         try {
             Thread.sleep(1000);
@@ -70,9 +64,7 @@ public class Repository {
     }
 
     public void update(Term term) {
-        databaseExecutor.execute(() -> {
-            mTermDAO.update(term);
-        });
+        databaseExecutor.execute(() -> mTermDAO.update(term));
 
         try {
             Thread.sleep(1000);
@@ -82,9 +74,7 @@ public class Repository {
     }
 
     public void delete(Term term) {
-        databaseExecutor.execute(() -> {
-            mTermDAO.delete(term);
-        });
+        databaseExecutor.execute(() -> mTermDAO.delete(term));
 
         try {
             Thread.sleep(1000);
@@ -95,9 +85,7 @@ public class Repository {
 
     // Courses
     public List<Course> getmAllCourses() throws InterruptedException {
-        databaseExecutor.execute(() -> {
-            mAllCourses = mCourseDAO.getAllCourses();
-        });
+        databaseExecutor.execute(() -> mAllCourses = mCourseDAO.getAllCourses());
 
         try {
             Thread.sleep(1000);
@@ -109,9 +97,7 @@ public class Repository {
     }
 
     public Course getCourse(int courseID) throws InterruptedException {
-        databaseExecutor.execute(() -> {
-            course = mCourseDAO.getCourse(courseID);
-        });
+        databaseExecutor.execute(() -> course = mCourseDAO.getCourse(courseID));
 
         try {
             Thread.sleep(1000);
@@ -123,9 +109,7 @@ public class Repository {
     }
 
     public List<Course> getmAssociatedCourses(int termID) throws InterruptedException {
-        databaseExecutor.execute(() -> {
-            mAllCourses = mCourseDAO.getAssociatedCourses(termID);
-        });
+        databaseExecutor.execute(() -> mAllCourses = mCourseDAO.getAssociatedCourses(termID));
 
         try {
             Thread.sleep(1000);
@@ -137,9 +121,7 @@ public class Repository {
     }
 
     public void insert(Course course) {
-        databaseExecutor.execute(() -> {
-            mCourseDAO.insert(course);
-        });
+        databaseExecutor.execute(() -> mCourseDAO.insert(course));
 
         try {
             Thread.sleep(1000);
@@ -149,9 +131,7 @@ public class Repository {
     }
 
     public void update(Course course) {
-        databaseExecutor.execute(() -> {
-            mCourseDAO.update(course);
-        });
+        databaseExecutor.execute(() -> mCourseDAO.update(course));
 
         try {
             Thread.sleep(1000);
@@ -161,9 +141,7 @@ public class Repository {
     }
 
     public void delete(Course course) {
-        databaseExecutor.execute(() -> {
-            mCourseDAO.delete(course);
-        });
+        databaseExecutor.execute(() -> mCourseDAO.delete(course));
 
         try {
             Thread.sleep(1000);
@@ -174,9 +152,7 @@ public class Repository {
 
     // Assessments
     public List<Assessment> getmAllAssessments() throws InterruptedException {
-        databaseExecutor.execute(() -> {
-            mAllAssessments = mAssessmentDAO.getAllAssessments();
-        });
+        databaseExecutor.execute(() -> mAllAssessments = mAssessmentDAO.getAllAssessments());
 
         try {
             Thread.sleep(1000);
@@ -188,9 +164,7 @@ public class Repository {
     }
 
     public Assessment getmAssessment(int assessmentID) {
-        databaseExecutor.execute(() -> {
-            assessment = mAssessmentDAO.getAssessment(assessmentID);
-        });
+        databaseExecutor.execute(() -> assessment = mAssessmentDAO.getAssessment(assessmentID));
 
         try {
             Thread.sleep(1000);
@@ -202,9 +176,7 @@ public class Repository {
     }
 
     public List<Assessment> getmAssociatedAssessments(int courseID) throws InterruptedException {
-        databaseExecutor.execute(() -> {
-            mAllAssessments = mAssessmentDAO.getAssociatedAssessments(courseID);
-        });
+        databaseExecutor.execute(() -> mAllAssessments = mAssessmentDAO.getAssociatedAssessments(courseID));
 
         try {
             Thread.sleep(1000);
@@ -216,9 +188,7 @@ public class Repository {
     }
 
     public void insert(Assessment assessment) {
-        databaseExecutor.execute(() -> {
-            mAssessmentDAO.insert(assessment);
-        });
+        databaseExecutor.execute(() -> mAssessmentDAO.insert(assessment));
 
         try {
             Thread.sleep(1000);
@@ -228,9 +198,7 @@ public class Repository {
     }
 
     public void update(Assessment assessment) {
-        databaseExecutor.execute(() -> {
-            mAssessmentDAO.update(assessment);
-        });
+        databaseExecutor.execute(() -> mAssessmentDAO.update(assessment));
 
         try {
             Thread.sleep(1000);
@@ -240,9 +208,7 @@ public class Repository {
     }
 
     public void delete(Assessment assessment) {
-        databaseExecutor.execute(() -> {
-            mAssessmentDAO.delete(assessment);
-        });
+        databaseExecutor.execute(() -> mAssessmentDAO.delete(assessment));
 
         try {
             Thread.sleep(1000);
@@ -253,9 +219,7 @@ public class Repository {
 
     // Instructors
     public List<Instructor> getmAllInstructors() throws InterruptedException {
-        databaseExecutor.execute(() -> {
-            mAllInstructors = mInstructorDAO.getAllInstructors();
-        });
+        databaseExecutor.execute(() -> mAllInstructors = mInstructorDAO.getAllInstructors());
 
         try {
             Thread.sleep(1000);
@@ -267,9 +231,7 @@ public class Repository {
     }
 
     public List<Instructor> getmAssociatedInstructors(int courseID) throws InterruptedException {
-        databaseExecutor.execute(() -> {
-            mAllInstructors = mInstructorDAO.getAssociatedInstructors(courseID);
-        });
+        databaseExecutor.execute(() -> mAllInstructors = mInstructorDAO.getAssociatedInstructors(courseID));
 
         try {
             Thread.sleep(1000);
@@ -281,9 +243,7 @@ public class Repository {
     }
 
     public void insert(Instructor instructor) {
-        databaseExecutor.execute(() -> {
-            mInstructorDAO.insert(instructor);
-        });
+        databaseExecutor.execute(() -> mInstructorDAO.insert(instructor));
 
         try {
             Thread.sleep(1000);
@@ -293,9 +253,7 @@ public class Repository {
     }
 
     public void update(Instructor instructor) {
-        databaseExecutor.execute(() -> {
-            mInstructorDAO.update(instructor);
-        });
+        databaseExecutor.execute(() -> mInstructorDAO.update(instructor));
 
         try {
             Thread.sleep(1000);
@@ -305,9 +263,7 @@ public class Repository {
     }
 
     public void delete(Instructor instructor) {
-        databaseExecutor.execute(() -> {
-            mInstructorDAO.delete(instructor);
-        });
+        databaseExecutor.execute(() -> mInstructorDAO.delete(instructor));
 
         try {
             Thread.sleep(1000);
