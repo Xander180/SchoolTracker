@@ -62,12 +62,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
+        Repository repository = new Repository(getApplication());
+
         if (menuItem.getItemId() == R.id.sample_data) {
-            Repository repository = new Repository(getApplication());
             SampleData.insertSampleData(repository);
             Toast.makeText(MainActivity.this, "Sample data has been loaded", Toast.LENGTH_LONG).show();
             return true;
         } else if (menuItem.getItemId() == R.id.delete_data) {
+            repository.deleteAll();
             Toast.makeText(MainActivity.this, "All data has been deleted", Toast.LENGTH_LONG).show();
             return true;
         }

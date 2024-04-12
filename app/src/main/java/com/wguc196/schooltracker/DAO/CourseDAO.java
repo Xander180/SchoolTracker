@@ -30,4 +30,7 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM courses WHERE termID = :termID ORDER BY courseID ASC")
     List<Course> getAssociatedCourses(int termID);
+
+    @Query("DELETE FROM courses")
+    void deleteAllCourses();
 }

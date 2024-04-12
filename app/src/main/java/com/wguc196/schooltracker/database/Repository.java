@@ -83,6 +83,16 @@ public class Repository {
         }
     }
 
+    public void deleteAllTerms() {
+        databaseExecutor.execute(mTermDAO::deleteAllTerms);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // Courses
     public List<Course> getmAllCourses() throws InterruptedException {
         databaseExecutor.execute(() -> mAllCourses = mCourseDAO.getAllCourses());
@@ -147,6 +157,16 @@ public class Repository {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw  new RuntimeException(e);
+        }
+    }
+
+    public void deleteAllCourses() {
+        databaseExecutor.execute(mCourseDAO::deleteAllCourses);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -217,6 +237,16 @@ public class Repository {
         }
     }
 
+    public void deleteAllAssessments() {
+        databaseExecutor.execute(mAssessmentDAO::deleteAllAssessments);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // Instructors
     public List<Instructor> getmAllInstructors() throws InterruptedException {
         databaseExecutor.execute(() -> mAllInstructors = mInstructorDAO.getAllInstructors());
@@ -264,6 +294,29 @@ public class Repository {
 
     public void delete(Instructor instructor) {
         databaseExecutor.execute(() -> mInstructorDAO.delete(instructor));
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteAllInstructors() {
+        databaseExecutor.execute(mInstructorDAO::deleteAllInstructors);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteAll() {
+        deleteAllTerms();
+        deleteAllCourses();
+        deleteAllAssessments();
+        deleteAllInstructors();
 
         try {
             Thread.sleep(1000);
