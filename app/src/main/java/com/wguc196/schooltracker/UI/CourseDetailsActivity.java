@@ -91,13 +91,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
                     Course currentCourse;
                     if (course.getCourseID() == getIntent().getIntExtra("courseID", -1)) {
                         currentCourse = course;
-                        if (associatedAssessments.isEmpty()) {
-                            repository.delete(currentCourse);
-                            Toast.makeText(CourseDetailsActivity.this, currentCourse.getTitle() + " has been deleted.", Toast.LENGTH_LONG).show();
-                            finish();
-                        } else {
-                            Toast.makeText(CourseDetailsActivity.this, "Cannot delete course with assessments!", Toast.LENGTH_LONG).show();
-                        }
+                        repository.delete(currentCourse);
+                        Toast.makeText(CourseDetailsActivity.this, currentCourse.getTitle() + " has been deleted.", Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 }
             } catch (InterruptedException e) {
@@ -252,9 +248,11 @@ public class CourseDetailsActivity extends AppCompatActivity {
             Intent intent = new Intent(CourseDetailsActivity.this, Receiver.class);
             intent.putExtra("reminder",  getIntent().getStringExtra("title") + " is now due!");
             PendingIntent sender = PendingIntent.getBroadcast(CourseDetailsActivity.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_MUTABLE);
+            PendingIntent sender2 = PendingIntent.getBroadcast(CourseDetailsActivity.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_MUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, startTrigger, sender);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, endTrigger, sender);
+            alarmManager2.set(AlarmManager.RTC_WAKEUP, endTrigger, sender2);
             Toast.makeText(CourseDetailsActivity.this, "Reminder has been set", Toast.LENGTH_LONG).show();
         } else {
             getOnBackPressedDispatcher().onBackPressed();

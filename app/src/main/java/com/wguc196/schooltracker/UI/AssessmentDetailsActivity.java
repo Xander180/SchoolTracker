@@ -37,6 +37,7 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_assessment_details);
+        repository = new Repository(getApplication());
 
         editAssessment = findViewById(R.id.assessmentEditButton);
         editAssessment.setOnClickListener(v -> {
@@ -59,6 +60,7 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
                         currentAssessment = assessment;
                         repository.delete(currentAssessment);
                         Toast.makeText(AssessmentDetailsActivity.this, currentAssessment.getTitle() + " has been deleted.", Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 }
             } catch (InterruptedException e) {

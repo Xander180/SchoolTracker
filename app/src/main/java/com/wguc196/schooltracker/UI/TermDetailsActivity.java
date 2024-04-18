@@ -101,6 +101,19 @@ public class TermDetailsActivity extends AppCompatActivity {
         termEndDate = findViewById(R.id.termEndTextView);
         termStartDate.setText(getIntent().getStringExtra("startDate"));
         termEndDate.setText(getIntent().getStringExtra("endDate"));
+
+        if (associatedCourses.isEmpty()) {
+            unassignedCourses.addAll(allCourses);
+        } else {
+            for (Course course : allCourses) {
+                for (Course associatedCourse : associatedCourses) {
+                    if (course.getTermID() != associatedCourse.getTermID()) {
+                        unassignedCourses.add(course);
+                    }
+                    break;
+                }
+            }
+        }
     }
 
     private void loadRepositoryData() {
@@ -128,15 +141,5 @@ public class TermDetailsActivity extends AppCompatActivity {
         unassignedCourses = new ArrayList<>();
         loadRepositoryData();
         loadTermData();
-
-        for (Course course : allCourses) {
-            for (Course associatedCourse : associatedCourses) {
-                if (course.getTermID() != associatedCourse.getTermID()) {
-                    unassignedCourses.add(course);
-                }
-                break;
-            }
-        }
-
     }
 }
