@@ -26,6 +26,7 @@ public class InstructorDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_instructor_details);
+        repository = new Repository(getApplication());
 
         editInstructor = findViewById(R.id.instructorEditButton);
         editInstructor.setOnClickListener(v -> {

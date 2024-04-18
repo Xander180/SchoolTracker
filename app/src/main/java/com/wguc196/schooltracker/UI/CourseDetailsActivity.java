@@ -60,7 +60,6 @@ public class CourseDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_course_details);
-
         repository = new Repository(getApplication());
 
         try {

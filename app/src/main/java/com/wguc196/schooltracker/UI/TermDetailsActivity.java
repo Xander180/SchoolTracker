@@ -40,6 +40,7 @@ public class TermDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_term_details);
+        repository = new Repository(getApplication());
 
         editTerm = findViewById(R.id.editTermButton);
         editTerm.setOnClickListener(v -> {
