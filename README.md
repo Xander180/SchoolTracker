@@ -1,4 +1,4 @@
-# WGU Mobile Application Developmenet - C196
+# WGU Mobile Application Development - C196
 
 ## Overview
 This Android application is a basic student scheduler as defined by the requirements of C196.  It allows a student to:
